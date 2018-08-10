@@ -14,8 +14,16 @@ import java.util.List;
 @SpringBootTest
 public class HospitalmanagerApplicationTests {
 
+    @Resource(name = "roleTypeMapper")
+    private RoleTypeMapper roleTypeMapper;
+
     @Test
     public void contextLoads() {
+
+        List<RoleType> roleTypes=this.roleTypeMapper.getRoleType();
+        for(RoleType r1:roleTypes){
+            System.out.println(r1.getRoleId()+"\t\t"+r1.getRoleName());
+        }
     }
 
 }
