@@ -97,6 +97,13 @@
             <version>1.1.10</version>
         </dependency>
 
+        <!--mybatis通用插件（省略sql）-->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+            <version>1.1.4</version>
+        </dependency>
+
     </dependencies>
 
     <build>
