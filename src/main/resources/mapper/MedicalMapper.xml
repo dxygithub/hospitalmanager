@@ -4,4 +4,74 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dyhc.hospitalmanager.dao.MedicalMapper">
 
+    <!-- 根据科室id，查询该科室下的所有体检项 -->
+    <select id="SelMedicalByDeskId" resultType="com.dyhc.hospitalmanager.pojo.Medical">
+      SELECT * FROM medical
+      WHERE desk_id = #{deskId} and isEnalbe = 1
+    </select>
+
+    <!-- 根据体检项项编号查询该体检项 -->
+    <select id="selMedicalById" resultType="com.dyhc.hospitalmanager.pojo.Medical">
+      select * from medical
+      where medical_id = #{medicalId}
+    </select>
+
+    <!-- 添加体检项 -->
+    <insert id="addMedical">
+      insert into medical value (#{medicalId},#{deskId},#{projectName},#{applyGender},#{pingyingCode},#{normalResult},#{resultType},#{price},#{promptInfo},
+      #{unit},#{referenceLowerLimit},#{referenceUpperLimit},#{lowTip},#{highTip},#{minValue},#{maxValue},1)
+    </insert>
+
+    <!-- 修改体检项 -->
+    <update id="updMedical">
+      UPDATE
+          medical
+        SET
+          <if test="projectName!=null and projectName!=''">
+              `project_name` = #{projectName},
+          </if>
+          <if test="applyGender!=null and applyGender!=''">
+              `apply_gender` = #{applyGender},
+          </if>
+          <if test="pingyingCode!=null and pingyingCode!=''">
+              `pingying_code` = #{pingyingCode},
+          </if>
+          <if test="normalResult!=null and normalResult!=''">
+              `normal_result` = #{normalResult},
+          </if>
+          <if test="resultType!=null and resultType!=''">
+              `result_type` = #{resultType},
+          </if>
+          <if test="price!=null and price!=0">
+              `price` = #{price},
+          </if>
+          <if test="promptInfo!=null and promptInfo!=''">
+              `prompt_info` = #{promptInfo},
+          </if>
+          <if test="unit!=null and unit!=''">
+              `unit` = #{unit},
+          </if>
+          <if test="referenceLowerLimit!=null and referenceLowerLimit!=''">
+              `reference_lower_limit` = #{referenceLowerLimit},
+          </if>
+          <if test="referenceUpperLimit!=null and referenceUpperLimit!=''">
+              `reference_ upper_limit` = #{referenceUpperLimit},
+          </if>
+          <if test="lowTip!=null and lowTip!=''">
+              `low_tip` = #{lowTip},
+          </if>
+          <if test="highTip!=null and highTip!=''">
+              `high_tip` = #{highTip},
+          </if>
+          <if test="minValue!=null and minValue!=''">
+              `min_value` = #{minValue},
+          </if>
+        <if test="maxValue!=null and maxValue!=''">
+              `max_value` = #{maxValue},
+        </if>
+        <if test="isEnalbe!=0">
+              isEnalbe = #{isEnalbe},
+        </if>
+        WHERE `medical_id` = #{medicalId};
+    </update>
 </mapper>

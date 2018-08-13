@@ -3,5 +3,45 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dyhc.hospitalmanager.dao.UnitsMapper">
-
+    <insert id="addUnits">
+        INSERT INTO `hospital_test_manager_db`.`units` (
+          `units_id`,
+          `units_name`,
+          `spell_code`,
+          `units_principal`,
+          `telephone`,
+          `postal_code`,
+          `address`,
+          `business_bank`,
+          `bank_number`,
+          `company_nature`,
+          `authorized_number`,
+          `remark`,
+          `isdelete`,
+          `create_by`,
+          `create_time`,
+          `modify_by`,
+          `modify_time`
+        )
+        VALUES
+          (
+            'units_id',
+            'units_name',
+            'spell_code',
+            'units_principal',
+            'telephone',
+            'postal_code',
+            'address',
+            'business_bank',
+            'bank_number',
+            'company_nature',
+            'authorized_number',
+            'remark',
+            'isdelete',
+            'create_by',
+            'create_time',
+            'modify_by',
+            'modify_time'
+          );
+    </insert>
 </mapper>

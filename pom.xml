@@ -97,10 +97,12 @@
             <version>1.1.10</version>
         </dependency>
 
-        <!--mybatis通用插件（省略sql）-->
+        <!-- Mybatis插件，简写sql语句 -->
+        <!-- https://mvnrepository.com/artifact/tk.mybatis/mapper-spring-boot-starter -->
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
+            <version>1.2.3</version>
         </dependency>
 
     </dependencies>

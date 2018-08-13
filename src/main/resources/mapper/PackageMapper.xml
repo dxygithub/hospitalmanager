@@ -4,4 +4,48 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dyhc.hospitalmanager.dao.PackageMapper">
 
+    <!-- 新增套餐 -->
+    <insert id="insertPackage">
+        INSERT INTO `package` (
+          `package_id`,
+          `package_name`,
+          `scope_application`,
+          `note`,
+          `isEnable`
+        )
+        VALUES
+          (
+            null,
+            #{packageName},
+            #{scopeApplication},
+            #{note},
+            1
+          );
+    </insert>
+
+    <!-- 修改套餐 -->
+    <update id="updPackage">
+        UPDATE
+          `package`
+        SET
+          <if test="packageName!=null and packageName != ''">
+              `package_name` = #{packageName},
+          </if>
+          <if test="scopeApplication!=null and scopeApplication!=''">
+              `scope_application` = #{scopeApplication},
+          </if>
+          <if test="note!=null and note!=''">
+              `note` = #{note}
+          </if>
+        WHERE `package_id` = #{packageId};
+    </update>
+
+    <update id="delPackage">
+        UPDATE
+          `package`
+        SET
+          `isEnable` = 0
+        where
+          `package_id` = #{packageId};
+    </update>
 </mapper>

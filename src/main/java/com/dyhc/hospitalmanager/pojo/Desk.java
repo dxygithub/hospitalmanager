@@ -1,12 +1,11 @@
 package com.dyhc.hospitalmanager.pojo;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
+@Table(name = "desk")
 public class Desk {
     private String deskId;
     private String deskName;
@@ -15,8 +14,7 @@ public class Desk {
     private int deskStatus;
     private String remark;
 
-    @Id
-    @Column(name = "desk_id")
+
     public String getDeskId() {
         return deskId;
     }
@@ -25,8 +23,6 @@ public class Desk {
         this.deskId = deskId;
     }
 
-    @Basic
-    @Column(name = "desk_name")
     public String getDeskName() {
         return deskName;
     }
@@ -35,8 +31,6 @@ public class Desk {
         this.deskName = deskName;
     }
 
-    @Basic
-    @Column(name = "desk_type_id")
     public int getDeskTypeId() {
         return deskTypeId;
     }
@@ -45,8 +39,6 @@ public class Desk {
         this.deskTypeId = deskTypeId;
     }
 
-    @Basic
-    @Column(name = "desk_summary")
     public String getDeskSummary() {
         return deskSummary;
     }
@@ -55,8 +47,6 @@ public class Desk {
         this.deskSummary = deskSummary;
     }
 
-    @Basic
-    @Column(name = "desk_status")
     public int getDeskStatus() {
         return deskStatus;
     }
@@ -65,8 +55,6 @@ public class Desk {
         this.deskStatus = deskStatus;
     }
 
-    @Basic
-    @Column(name = "remark")
     public String getRemark() {
         return remark;
     }
