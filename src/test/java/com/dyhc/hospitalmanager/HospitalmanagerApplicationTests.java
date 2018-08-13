@@ -2,8 +2,10 @@ package com.dyhc.hospitalmanager;
 
 import com.dyhc.hospitalmanager.dao.RoleTypeMapper;
 import com.dyhc.hospitalmanager.pojo.RoleType;
+import com.dyhc.hospitalmanager.service.DeskService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -19,7 +21,6 @@ public class HospitalmanagerApplicationTests {
 
     @Test
     public void contextLoads() {
-
         List<RoleType> roleTypes=this.roleTypeMapper.getRoleType();
         for(RoleType r1:roleTypes){
             System.out.println(r1.getRoleId()+"\t\t"+r1.getRoleName());

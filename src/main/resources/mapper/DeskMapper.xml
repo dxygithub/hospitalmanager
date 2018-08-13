@@ -4,4 +4,48 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dyhc.hospitalmanager.dao.DeskMapper">
 
+    <!-- 新增科室 -->
+    <insert id="addDesk">
+        INSERT INTO desk VALUE(#{deskId},#{deskName},#{deskTypeId},#{deskSummary},#{deskStatus},#{remark})
+    </insert>
+
+    <!-- 根据科室ID，修改科室 -->
+    <update id="updDesk">
+        UPDATE
+          desk
+        SET
+            <if test="deskName!=null and deskName != ''">
+                `desk_name` = #{deskName},
+            </if>
+            <if test="deskTypeId!=0">
+                `desk_type_id` = #{deskTypeId},
+            </if>
+            <if test="deskSummary!=null and deskSummary!= ''">
+                `desk_summary` = #{deskSummary},
+            </if>
+            <if test="deskStatus!=0">
+                `desk_status` = #{deskStatus},
+            </if>
+            <if test="remark!=null and remark != ''">
+                `remark` = #{remark}
+            </if>
+        WHERE `desk_id` = #{deskId};
+    </update>
+
+    <!-- 根据科室ID，删除该科室 -->
+    <delete id="delDesk">
+        delete from desk where desk_id = #{deskId}
+    </delete>
+
+    <!-- 根据科室编号查询科室对象 -->
+    <select id="selDeksById" resultType="com.dyhc.hospitalmanager.pojo.Desk">
+        select * from desk where desk_id = #{deskId}
+    </select>
+
+    <!-- 查询最后一个科室id，生成新的科室id -->
+    <select id="selLastDeskId" resultType="string">
+        SELECT desk_id FROM desk
+        ORDER BY desk_id DESC
+        LIMIT 1
+    </select>
 </mapper>
