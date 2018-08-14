@@ -32,7 +32,7 @@
         )
         VALUES
           (
-            null ,
+            #{unitsId} ,
             #{unitsName},
             #{spellCode},
             #{unitsPrincipal},
