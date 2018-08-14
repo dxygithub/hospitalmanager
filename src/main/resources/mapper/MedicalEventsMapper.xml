@@ -4,4 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dyhc.hospitalmanager.dao.MedicalEventsMapper">
 
+    <!-- 修改体检明细 -->
+    <update id="updMedicalEvents">
+
+    </update>
+
+    <!-- 根据体检项查询体检明细 -->
+    <select id="selMedicalEventsByTestId">
+
+    </select>
 </mapper>

@@ -11,9 +11,41 @@ import java.util.List;
 @Repository
 public interface DeskTypeMapper {
 
-    int addDesk_type(DeskType   deskType)throws Exception;//新增科室类型
-    DeskType   getById(@Param("id")Integer id);//根据id查询科室类型
-    int updDeskType (DeskType    deskType)throws Exception;//修改科室类型
-    List<DeskType> getAll()throws Exception; //查询科室类型
-    int delDeskType  (@Param("id")Integer id)throws Exception; //删除科室类型
+    /**
+     * 新增科室类型
+     * @param deskType 科室类型
+     * @return
+     * @throws Exception
+     */
+    int addDesk_type(DeskType   deskType)throws Exception;
+
+    /**
+     * 根据id查询科室类型
+     * @param id
+     * @return
+     */
+    DeskType   getDeskTypeById(@Param("deskTypeId")Integer id)throws Exception;
+
+    /**
+     * 修改科室类型
+     * @param deskType
+     * @return
+     * @throws Exception
+     */
+    int updDeskType (DeskType    deskType)throws Exception;
+
+    /**
+     * 获取所有科室类型
+     * @return
+     * @throws Exception
+     */
+    List<DeskType> getAllDeskTypeList()throws Exception;
+
+    /**
+     * 删除科室类型
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    int delDeskTypeById(@Param("id")Integer id)throws Exception;
 }
