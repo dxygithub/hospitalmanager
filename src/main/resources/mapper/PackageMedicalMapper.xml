@@ -4,4 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dyhc.hospitalmanager.dao.PackageMedicalMapper">
 
+    <!-- 显示套餐表下边的组合项的下边的体检项以及基本体检项 -->
+    <select id="getPackageInfoByPackageId" resultType="com.dyhc.hospitalmanager.pojo.PackageMedical">
+        select * from package_medical where packageId=#{packageId}
+    </select>
 </mapper>
