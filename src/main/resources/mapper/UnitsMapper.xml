@@ -78,9 +78,9 @@
             <if test="bankNumber!=null and bankNumber!=''">`bank_number` = #{bankNumber},</if>
             <if test="companyNature!=null and companyNature!=''">`company_nature` = #{companyNature},</if>
             <if test="authorizedNumber!=0">`authorized_number` =  #{authorizedNumber},</if>
-            <if test="">`remark` = #{remark},</if>
-            <if test="">`modify_by` = 1,</if>
-            <if test="">`modify_time` = now(),</if>
+            <if test="remark!=null and remark!=''">`remark` = #{remark},</if>
+            `modify_by` = 1,
+            `modify_time` = now()
           </trim>
         WHERE `units_id` = #{unitsId};
     </update>
