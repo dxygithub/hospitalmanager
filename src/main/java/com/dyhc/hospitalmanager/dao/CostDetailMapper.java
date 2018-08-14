@@ -13,7 +13,7 @@ public interface CostDetailMapper {
      * @param costDetail
      * @return
      */
-    int addCostDetailByPayment(CostDetail costDetail );
+    int addCostDetailByPayment(CostDetail costDetail);
 
     /**
      * 扣费 状态为1
