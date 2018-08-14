@@ -5,12 +5,12 @@
 <mapper namespace="com.dyhc.hospitalmanager.dao.PackageMapper">
 
     <!-- 查询所有套餐 -->
-    <select id="getpackageList">
+    <select id="getpackageList" resultType="com.dyhc.hospitalmanager.pojo.Package">
         select * from `package`
     </select>
 
     <!-- 根据套餐id查询该套餐 -->
-    <select id="getpackageById">
+    <select id="getpackageById" resultType="com.dyhc.hospitalmanager.pojo.Package">
         select * from `package`
         where `package_id`=#{packageid}
     </select>

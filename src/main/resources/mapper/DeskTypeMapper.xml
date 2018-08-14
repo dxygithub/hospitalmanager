@@ -19,7 +19,7 @@
 
     <!-- 根据id查询科室类型 -->
     <select id="getDeskTypeById" resultType="com.dyhc.hospitalmanager.pojo.DeskType">
-        select * form desk_type
+        select * FROM desk_type
         where desk_type_id = #{deskTypeId}
     </select>
 

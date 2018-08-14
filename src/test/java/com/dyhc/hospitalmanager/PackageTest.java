@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PackageTest {
@@ -68,6 +70,20 @@ public class PackageTest {
             System.out.println("修改成功！");
         }else {
             System.out.println("修改成功！");
+        }
+    }
+    @Test
+    public  void  getpackageList(){
+        List<Package> packageList=packageMapper.getpackageList();
+        for (Package p: packageList) {
+            System.out.println(p.getPackageName());
+        }
+    }
+    @Test
+    public void getpackageId(){
+        List<Package> packageList=packageMapper.getpackageById(1);
+        for (Package p: packageList) {
+            System.out.println(p.getPackageName());
         }
     }
 }

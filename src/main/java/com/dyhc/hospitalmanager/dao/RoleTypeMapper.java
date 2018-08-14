@@ -24,7 +24,7 @@ public interface RoleTypeMapper {
      * @param id
      * @return
      */
-    RoleType  getById(@Param("id")Integer id)throws Exception;
+    RoleType  getById(@Param("roleId")Integer id)throws Exception;
 
     /**
      * 修改角色类型
