@@ -28,15 +28,17 @@
         UPDATE
           `package`
         SET
-          <if test="packageName!=null and packageName != ''">
-              `package_name` = #{packageName},
-          </if>
-          <if test="scopeApplication!=null and scopeApplication!=''">
-              `scope_application` = #{scopeApplication},
-          </if>
-          <if test="note!=null and note!=''">
-              `note` = #{note}
-          </if>
+        <trim suffixOverrides=",">
+            <if test="packageName!=null and packageName != ''">
+                `package_name` = #{packageName},
+            </if>
+            <if test="scopeApplication!=null and scopeApplication!=''">
+                `scope_application` = #{scopeApplication},
+            </if>
+            <if test="note!=null and note!=''">
+                `note` = #{note},
+            </if>
+        </trim>
         WHERE `package_id` = #{packageId};
     </update>
 

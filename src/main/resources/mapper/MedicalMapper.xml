@@ -27,6 +27,7 @@
       UPDATE
           medical
         SET
+        <trim suffixOverrides=",">
           <if test="projectName!=null and projectName!=''">
               `project_name` = #{projectName},
           </if>
@@ -66,12 +67,13 @@
           <if test="minValue!=null and minValue!=''">
               `min_value` = #{minValue},
           </if>
-        <if test="maxValue!=null and maxValue!=''">
-              `max_value` = #{maxValue},
-        </if>
-        <if test="isEnalbe!=0">
-              isEnalbe = #{isEnalbe},
-        </if>
+            <if test="maxValue!=null and maxValue!=''">
+                  `max_value` = #{maxValue},
+            </if>
+            <if test="isEnalbe!=0">
+                  isEnalbe = #{isEnalbe},
+            </if>
+        </trim>
         WHERE `medical_id` = #{medicalId};
     </update>
 </mapper>

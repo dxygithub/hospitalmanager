@@ -3,5 +3,30 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dyhc.hospitalmanager.dao.ProposedDescriptionMapper">
-
+    <select id="getProposedDescriptioncommonResultsId" resultType="com.dyhc.hospitalmanager.pojo.ProposedDescription">
+        SELECT * FROM proposed_description WHERE common_results_id =#{commonResultsId}
+    </select>
+    <select id="getProposedDescriptioncommonproposedDescriptionId" resultType="com.dyhc.hospitalmanager.pojo.ProposedDescription">
+         select  * from  proposed_description where proposed_description_id=#{proposedDescriptionId}
+    </select>
+    <insert id="insertProposedDescription">
+        INSERT INTO proposed_description values (null,#{commonResultsId},#{sciencePopularization},#{adviceContent},#{isDelete})
+    </insert>
+    <update id="updateProposedDescription">
+        update proposed_description set
+        <if test="commonResultsId>0">
+            common_results_id=#{commonResultsId},
+        </if>
+        <if test="sciencePopularization!=null and sciencePopularization!=''">
+            science_popularization=#{sciencePopularization},
+        </if>
+        <if test="adviceContent!=null and adviceContent!=''">
+            advice_content=#{adviceContent},
+        </if>
+        isDelete= #{isDelete}
+        where proposed_description_id=#{proposedDescriptionId}
+    </update>
+    <update id="updateProposedDescriptionisDelete">
+         update proposed_description set isDelete=0   where proposed_description_id=#{proposedDescriptionId}
+    </update>
 </mapper>
