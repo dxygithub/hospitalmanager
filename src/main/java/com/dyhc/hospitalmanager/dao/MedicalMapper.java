@@ -77,5 +77,4 @@ public interface MedicalMapper {
      * @throws Exception
      */
     List<Medical> getCom(@Param("test_number")String test_number)throws Exception;
-
 }
