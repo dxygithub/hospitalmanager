@@ -14,21 +14,23 @@
         UPDATE
           desk
         SET
-            <if test="deskName!=null and deskName != ''">
-                `desk_name` = #{deskName},
-            </if>
-            <if test="deskTypeId!=0">
-                `desk_type_id` = #{deskTypeId},
-            </if>
-            <if test="deskSummary!=null and deskSummary!= ''">
-                `desk_summary` = #{deskSummary},
-            </if>
-            <if test="deskStatus!=0">
-                `desk_status` = #{deskStatus},
-            </if>
-            <if test="remark!=null and remark != ''">
-                `remark` = #{remark}
-            </if>
+            <trim suffixOverrides=",">
+                <if test="deskName!=null and deskName != ''">
+                    `desk_name` = #{deskName},
+                </if>
+                <if test="deskTypeId!=0">
+                    `desk_type_id` = #{deskTypeId},
+                </if>
+                <if test="deskSummary!=null and deskSummary!= ''">
+                    `desk_summary` = #{deskSummary},
+                </if>
+                <if test="deskStatus!=0">
+                    `desk_status` = #{deskStatus},
+                </if>
+                <if test="remark!=null and remark != ''">
+                    `remark` = #{remark}
+                </if>
+            </trim>
         WHERE `desk_id` = #{deskId};
     </update>
 
