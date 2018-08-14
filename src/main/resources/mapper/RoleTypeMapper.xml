@@ -3,7 +3,34 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dyhc.hospitalmanager.dao.RoleTypeMapper">
-    <select id="getRoleType" resultType="com.dyhc.hospitalmanager.pojo.RoleType">
+
+    <!-- 新增角色类型 -->
+    <insert id="addRoleType">
+        INSERT INTO `hospital_test_manager_db`.`role_type` (`role_id`, `role_name`)
+        VALUES (null , #{roleName});
+    </insert>
+
+    <!-- 根据id查询角色类型 -->
+    <select id="getById" resultType="com.dyhc.hospitalmanager.pojo.RoleType">
+        select * from `role_type`
+        where role_id = #{roleId}
+    </select>
+
+    <!-- 修改角色类型 -->
+    <update id="updRoleType">
+        update `role_type`
+        set `role_name` = #{roleName}
+        where role_id = #{roleId}
+    </update>
+
+    <!-- 查询所有角色类型 -->
+    <select id="getAllRoleTypeList" resultType="com.dyhc.hospitalmanager.pojo.RoleType">
         select * from role_type;
     </select>
+
+    <!-- 根据角色类型id删除该类型 -->
+    <delete id="delRoleTypeById">
+        delete from role_type
+        where role_id = #{id};
+    </delete>
 </mapper>
