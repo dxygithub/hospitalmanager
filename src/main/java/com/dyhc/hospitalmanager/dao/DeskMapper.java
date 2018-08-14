@@ -5,10 +5,17 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface DeskMapper extends CommsMapper<Desk>{
 
+    /**
+     * 查询所有科室
+     * @return
+     */
+    List<Desk> getDeskList() throws Exception;
     /**
      * 新增科室
      * @param desk 科室对象

@@ -4,4 +4,44 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dyhc.hospitalmanager.dao.UnitsGroupMapper">
 
+    <!-- 根据单位编号查询所属的所有分组 -->
+    <select id="getUnitsGroupList" resultType="com.dyhc.hospitalmanager.pojo.UnitsGroup">
+        select * from `units_group`
+        where units_id  = #{unitsId}
+    </select>
+
+    <!-- 新增单位分组信息 -->
+    <insert id="addUnitsGroup">
+        INSERT INTO `hospital_test_manager_db`.`units_group` (
+          `units_group_id`,
+          `group_name`,
+          `units_id`,
+          `sex_condition`,
+          `marital_condition`,
+          `age_upper_limit`,
+          `age_lower_limit`,
+          `duty_condition`,
+          `create_by`,
+          `create_time`,
+          `modify_by`,
+          `modifu_time`,
+          `isdelete`
+        )
+        VALUES
+          (
+            #{unitsGroupId},
+            #{groupName},
+            #{unitsId},
+            #{sexCondition},
+            #{maritalCondition},
+            #{ageUpperLimit},
+            #{ageLowerLimit},
+            #{dutyCondition},
+            1,
+            now(),
+            null ,
+            null ,
+            1
+          );
+    </insert>
 </mapper>

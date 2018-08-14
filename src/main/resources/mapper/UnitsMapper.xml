@@ -3,6 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dyhc.hospitalmanager.dao.UnitsMapper">
+
+    <!-- 获取所有单位 -->
+    <select id="getAllUnitsList" resultType="com.dyhc.hospitalmanager.pojo.Units">
+      select * from units
+    </select>
+
+    <!-- 添加单位 -->
     <insert id="addUnits">
         INSERT INTO `hospital_test_manager_db`.`units` (
           `units_id`,
@@ -25,23 +32,62 @@
         )
         VALUES
           (
-            'units_id',
-            'units_name',
-            'spell_code',
-            'units_principal',
-            'telephone',
-            'postal_code',
-            'address',
-            'business_bank',
-            'bank_number',
-            'company_nature',
-            'authorized_number',
-            'remark',
-            'isdelete',
-            'create_by',
-            'create_time',
-            'modify_by',
-            'modify_time'
+            null ,
+            #{unitsName},
+            #{spellCode},
+            #{unitsPrincipal},
+            #{telephone},
+            #{postalCode},
+            #{address},
+            #{businessBank},
+            #{bankNumber},
+            #{companyNature},
+            #{authorizedNumber},
+            #{remark},
+            1,
+            1,
+            now(),
+            null ,
+            null
           );
     </insert>
+
+    <!-- 修改单位信息 -->
+    <update id="updUnits">
+        UPDATE
+          `hospital_test_manager_db`.`units`
+        SET
+          <trim suffixOverrides=",">
+            <if test="unitsName!=null and unitsName!=''">
+              `units_name` =  #{unitsName},
+            </if>
+            <if test="spellCode!=null and spellCode!=''">
+              `spell_code` = #{spellCode},
+            </if>
+            <if test="unitsPrincipal!=null and unitsPrincipal!=''">
+              `units_principal` = #{unitsPrincipal},
+            </if>
+            <if test="telephone!=null and telephone!=''">
+              `telephone` = #{telephone},
+            </if>
+            <if test="postalCode!=null and postalCode!=''">
+              `postal_code` =  #{postalCode},
+            </if>
+            <if test="address!=null and address!=''">`address` = #{address},</if>
+            <if test="businessBank!=null and businessBank!=''">`business_bank` = #{businessBank},</if>
+            <if test="bankNumber!=null and bankNumber!=''">`bank_number` = #{bankNumber},</if>
+            <if test="companyNature!=null and companyNature!=''">`company_nature` = #{companyNature},</if>
+            <if test="authorizedNumber!=0">`authorized_number` =  #{authorizedNumber},</if>
+            <if test="">`remark` = #{remark},</if>
+            <if test="">`modify_by` = 1,</if>
+            <if test="">`modify_time` = now(),</if>
+          </trim>
+        WHERE `units_id` = #{unitsId};
+    </update>
+
+    <!-- 删除单位 -->
+    <update id="delUnits">
+        update units set isdelete = 0
+        where units_id = #{unitsId}
+    </update>
 </mapper>
