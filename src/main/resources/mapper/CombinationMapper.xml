@@ -30,18 +30,19 @@
         UPDATE
           `combination`
         SET
-          `combination_id` = #{combinationId},
-          `desk_id` = #{deskId},
-          `combinationName` = #{combinationName},
-          `pinyin_code` = #{pinyinCode},
-          `clinical_significance` = #{clinicalSignificance},
-          `prompt_information` = #{promptInformation},
-          `normalDesc` = #{normalDesc},
-          `checkType` = #{checkType},
-          `resultToWay` = #{resultToWay},
-          `isSpecimen` = #{isSpecimen},
-          `specimen_type` = #{specimenType},
-          `isEnable` = #{isEnable}
-        WHERE `combination_id` = #{deskId};
+          <trim suffixOverrides=",">
+              `desk_id` = #{deskId},
+              `combinationName` = #{combinationName},
+              `pinyin_code` = #{pinyinCode},
+              `clinical_significance` = #{clinicalSignificance},
+              `prompt_information` = #{promptInformation},
+              `normalDesc` = #{normalDesc},
+              `checkType` = #{checkType},
+              `resultToWay` = #{resultToWay},
+              `isSpecimen` = #{isSpecimen},
+              `specimen_type` = #{specimenType},
+              `isEnable` = #{isEnable}
+          </trim>
+        WHERE `combination_id` = #{combinationId};
     </update>
 </mapper>

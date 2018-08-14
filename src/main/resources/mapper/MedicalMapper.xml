@@ -70,7 +70,7 @@
             <if test="maxValue!=null and maxValue!=''">
                   `max_value` = #{maxValue},
             </if>
-            <if test="isEnalbe!=0">
+            <if test="isEnalbe&lt;0">
                   isEnalbe = #{isEnalbe},
             </if>
         </trim>
@@ -95,7 +95,6 @@
     <select id="getMadical" resultType="com.dyhc.hospitalmanager.pojo.Medical">
         SELECT * FROM `medical` WHERE medical_id IN(
         SELECT medical_id FROM `user_test_info` WHERE test_number=#{test_number})
-
     </select>
 
     <!-- 获取用户的套餐项 -->

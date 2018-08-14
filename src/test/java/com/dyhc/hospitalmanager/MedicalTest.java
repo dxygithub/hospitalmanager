@@ -101,6 +101,77 @@ public class MedicalTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+    }
+    @Test
+    public  void  getMedicalByCombinationId(){
+        try {
+            List<Medical> medicalList=medicalMapper.getMedicalByCombinationId("010001");
+            for (Medical m: medicalList) {
+                System.out.println(m.getProjectName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public  void  getMedicalList(){
+        try {
+            List<Medical> medicalList=medicalMapper.getMedicalList("gz");
+            for (Medical m:medicalList) {
+                System.out.println(m.getProjectName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public  void  deleteMedical(){
+        Medical medical=new Medical();
+        medical.setIsEnalbe(0);
+        medical.setMedicalId("010001");
+        int result= 0;
+        try {
+            result = medicalMapper.updMedical(medical);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (result>0){
+            System.out.println("修改成功！");
+        }else {
+            System.out.println("修改失败！");
+        }
+    }
+    @Test
+    public  void  getMadical(){
+        try {
+            List<Medical> medicalList=medicalMapper.getMadical("20180810003");
+            for (Medical m:medicalList) {
+                System.out.println(m.getProjectName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public  void  getPackage(){
+        try {
+            List<Medical> medicalList=medicalMapper.getPackage("20180810003");
+            for (Medical m:medicalList) {
+                System.out.println(m.getProjectName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public  void  getCom(){
+        try {
+            List<Medical> medicalList=medicalMapper.getCom("20180810002");
+            for (Medical m:medicalList) {
+                System.out.println(m.getProjectName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

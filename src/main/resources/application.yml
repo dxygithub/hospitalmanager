@@ -2,7 +2,8 @@ spring:
   datasource:
     druid:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://192.168.50.211/hospital_test_manager_db?useUnicode=true&characterEncoding=utf-8&useSSL=false
+#      192.168.50.211
+      url: jdbc:mysql://localhost/hospital_test_manager_db?useUnicode=true&characterEncoding=utf-8&useSSL=false
       username: root
       password: root
       db-type: com.alibaba.druid.pool.DruidDataSource #指定使用druid连接池作为数据源
