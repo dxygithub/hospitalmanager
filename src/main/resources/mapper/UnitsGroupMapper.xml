@@ -56,7 +56,7 @@
                 <if test="sexCondition!=null and sexCondition!=''">`sex_condition` = #{sexCondition},</if>
                 <if test="maritalCondition!=null and maritalCondition!=''">`marital_condition` = #{maritalCondition},</if>
                 <if test="ageUpperLimit!=0">`age_upper_limit` = #{ageUpperLimit},</if>
-                <if test="ageLowerLimit！=0">`age_lower_limit` = #{ageLowerLimit},</if>
+                <if test="ageLowerLimit!=0">`age_lower_limit` = #{ageLowerLimit},</if>
                 <if test="dutyCondition!=null and dutyCondition!=''">`duty_condition` = #{dutyCondition},</if>
                 `modify_by` = 1,
                 `modifu_time` = now(),

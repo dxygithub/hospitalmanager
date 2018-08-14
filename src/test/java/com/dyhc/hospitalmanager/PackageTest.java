@@ -22,8 +22,13 @@ public class PackageTest {
        packages.setScopeApplication("媳妇");
        packages.setNote(null);
        packages.setIsEnable(0);
-       int result=packageMapper.insertPackage(packages);
-       if (result>0){
+        int result= 0;
+        try {
+            result = packageMapper.insertPackage(packages);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (result>0){
            System.out.println("新增成功");
        }else {
            System.out.println("新增失败");
@@ -37,7 +42,12 @@ public class PackageTest {
         packages.setScopeApplication("老公");
         packages.setNote(null);
         packages.setIsEnable(0);
-        int result=packageMapper.updPackage(packages);
+        int result= 0;
+        try {
+            result = packageMapper.updPackage(packages);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (result>0){
             System.out.println("修改成功");
         }else {
@@ -48,7 +58,12 @@ public class PackageTest {
     public  void  delPackage(){
         Package p=new Package();
         p.setIsEnable(0);
-        int result=packageMapper.delPackage(8);
+        int result= 0;
+        try {
+            result = packageMapper.delPackage(8);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (result>0){
             System.out.println("修改成功！");
         }else {
