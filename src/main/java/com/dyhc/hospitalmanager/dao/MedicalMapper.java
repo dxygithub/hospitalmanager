@@ -40,16 +40,42 @@ public interface MedicalMapper {
     int updMedical(Medical medical) throws Exception;
 
     /**
-     *
-     * @param CombinationId
+     * 根据组合项id查询体检项
+     * @param CombinationId 组合项id
      * @return
      * @throws Exception
      */
-    List<Medical>  getMedicalByCombinationId(String  CombinationId)throws Exception;//根据组合项id查询体检项
-    List<Medical>  getMedicalList(String namecode);//根据拼音简码查询体检信息
-    int deleteMedical(String medicalId) throws Exception;//删除
-    List<Medical> getMadical(@Param("test_number") String test_number)throws Exception;//获取用户的体检项
-    List<Medical> getPackage(@Param("test_number")String test_number)throws Exception;//获取用户的套餐项
-    List<Medical> getCom(@Param("test_number")String test_number)throws Exception;//获取用户组合项
+    List<Medical>  getMedicalByCombinationId(@Param("CombinationId") String  CombinationId)throws Exception;
+
+    /**
+     * 根据拼音简码查询体检信息
+     * @param namecode
+     * @return
+     */
+    List<Medical>  getMedicalList(@Param("namecode") String namecode)throws Exception;
+
+    /**
+     * 获取用户的体检项
+     * @param test_number 用户编号
+     * @return
+     * @throws Exception
+     */
+    List<Medical> getMadical(@Param("test_number") String test_number)throws Exception;
+
+    /**
+     * 获取用户的套餐项
+     * @param test_number 用户编号
+     * @return
+     * @throws Exception
+     */
+    List<Medical> getPackage(@Param("test_number")String test_number)throws Exception;
+
+    /**
+     * 获取用户组合项
+     * @param test_number 用户编号
+     * @return
+     * @throws Exception
+     */
+    List<Medical> getCom(@Param("test_number")String test_number)throws Exception;
 
 }
