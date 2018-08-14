@@ -4,4 +4,54 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dyhc.hospitalmanager.dao.RoleInfoMapper">
 
+    <!-- 新增角色 -->
+    <insert id="addRoleInfo">
+        INSERT INTO `hospital_test_manager_db`.`role_info` (
+          `role_info_id`,
+          `role_name`,
+          `user_name`,
+          `password`,
+          `desk_id`,
+          `role_type_id`
+        )
+        VALUES
+          (
+            null ,
+            #{roleName},
+            #{userName},
+            #{password},
+            #{deskId},
+            #{roleTypeId}
+          );
+    </insert>
+
+    <update id="updRoleInfo">
+        UPDATE
+          `hospital_test_manager_db`.`role_info`
+        SET
+          <trim suffixOverrides=",">
+            <if test="roleName!=null and roleName!=''">`role_name` = #{roleName},</if>
+            <if test="userName!=null and userName!=''">`user_name` = #{userName},</if>
+            <if test="password!=null and password!=''">`password` = #{password},</if>
+            <if test="deskId!=null and deskId!=''">`desk_id` = #{deskId},</if>
+            <if test="roleTypeId&gt;0">`role_type_id` = #{roleTypeId}</if>
+          </trim>
+        WHERE `role_info_id` = #{roleInfoId};
+    </update>
+
+    <!-- 获取所有角色信息 -->
+    <select id="getRoleInfoList" resultType="com.dyhc.hospitalmanager.pojo.RoleInfo">
+        select * from `role_info`
+    </select>
+
+    <!-- 根据角色编号查询该角色 -->
+    <select id="getRoleInfoById" resultType="com.dyhc.hospitalmanager.pojo.RoleInfo">
+        select * from `role_info`
+        where `role_info_id` = #{roleInfoId}
+    </select>
+
+    <select id="login" resultType="com.dyhc.hospitalmanager.pojo.RoleInfo">
+        SELECT * FROM `role_info`
+        WHERE `user_name` = #{userName} and `password` = #{pwd}
+    </select>
 </mapper>

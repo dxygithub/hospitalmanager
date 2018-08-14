@@ -14,12 +14,12 @@ public interface MedicalEventsMapper {
      * @param medicalEvents
      * @return
      */
-    int updMedicalEvents(MedicalEvents medicalEvents);
+    int updMedicalEvents(MedicalEvents medicalEvents) throws Exception;
 
     /**
      * 根据体检项查询体检明细
-     * @param testId 体检项id
+     * @param medicalId 体检项id
      * @return
      */
-    MedicalEvents selMedicalEventsByTestId(@Param("testId") String testId);
+    MedicalEvents selMedicalEventsByTestId(@Param("medicalId") String medicalId) throws Exception;
 }
