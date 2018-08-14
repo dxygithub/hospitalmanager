@@ -12,14 +12,6 @@ import java.util.List;
 public interface UserRegisterInfoMapper {
 
     /**
-     * 根据拼音简码和电话查询预约信息
-     * @param namecode
-     * @param telephone
-     * @return
-     */
-    List<UserRegisterInfo> getUserregisterinfoList(@Param("namecode") String namecode, @Param("telephone") String telephone);
-
-    /**
      * 预约
      * @param userregisterinfo
      * @return

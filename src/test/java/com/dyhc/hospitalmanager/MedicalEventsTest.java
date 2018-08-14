@@ -28,7 +28,12 @@ public class MedicalEventsTest {
         medicalEvents.setMinValue("60");
         medicalEvents.setMaxValue("100");
         medicalEvents.setMedicalId("010002");
-        int result=medicalEventsMapper.updMedicalEvents(medicalEvents);
+        int result= 0;
+        try {
+            result = medicalEventsMapper.updMedicalEvents(medicalEvents);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (result>0){
             System.out.println("修改成功！");
         }else {
@@ -38,7 +43,11 @@ public class MedicalEventsTest {
     MedicalEvents medicalEvents=null;
     @Test
     public  void selMedicalEventsByTestId(){
-        medicalEvents=medicalEventsMapper.selMedicalEventsByTestId("1");
+        try {
+            medicalEvents=medicalEventsMapper.selMedicalEventsByTestId("010000");
+        } catch (Exception e) {
+
+        }
         System.out.println(medicalEvents.getEventsName());
     }
 }
