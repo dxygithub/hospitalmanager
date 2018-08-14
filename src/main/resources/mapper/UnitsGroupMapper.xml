@@ -44,4 +44,30 @@
             1
           );
     </insert>
+
+    <!-- 修改单位分组信息 -->
+    <update id="updUnitsGroup">
+        UPDATE
+          `hospital_test_manager_db`.`units_group`
+        SET
+            <trim suffixOverrides=",">
+                <if test="groupName!=null and groupName!=''">`group_name` = #{groupName},</if>
+                <if test="unitsId!=null and unitsId!=''">`units_id` = #{unitsId},</if>
+                <if test="sexCondition!=null and sexCondition!=''">`sex_condition` = #{sexCondition},</if>
+                <if test="maritalCondition!=null and maritalCondition!=''">`marital_condition` = #{maritalCondition},</if>
+                <if test="ageUpperLimit!=0">`age_upper_limit` = #{ageUpperLimit},</if>
+                <if test="ageLowerLimit！=0">`age_lower_limit` = #{ageLowerLimit},</if>
+                <if test="dutyCondition!=null and dutyCondition!=''">`duty_condition` = #{dutyCondition},</if>
+                `modify_by` = 1,
+                `modifu_time` = now(),
+            </trim>
+        WHERE `units_group_id` =#{unitsGroupId};
+    </update>
+
+    <!-- 根据分组Id删除该分组 -->
+    <update id="delUnitsGroup">
+        update `hospital_test_manager_db`.`units_group`
+        set `isdelete` = 0
+        where `units_group_id` = #{unitsGroupId};
+    </update>
 </mapper>

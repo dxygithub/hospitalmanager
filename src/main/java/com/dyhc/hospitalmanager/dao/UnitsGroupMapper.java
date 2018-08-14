@@ -37,5 +37,5 @@ public interface UnitsGroupMapper {
      * @param unitsGroupId
      * @return
      */
-    int delUnitsGroup(String unitsGroupId) throws Exception;
+    int delUnitsGroup(@Param("unitsGroupId") String unitsGroupId) throws Exception;
 }
