@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * 单位信息维护业务实现
+ * @author duxiaoyu
  */
 @Service("unitsServiceImpl")
 public class UnitsServiceImpl implements UnitsService {
