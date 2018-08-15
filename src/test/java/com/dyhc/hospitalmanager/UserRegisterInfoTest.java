@@ -17,13 +17,7 @@ import java.util.List;
 public class UserRegisterInfoTest {
     @Resource
     private UserRegisterInfoMapper userRegisterInfoMapper;
-    @Test
-    public  void getUserregisterinfoList(){
-        List<UserRegisterInfo> userRegisterInfoList=userRegisterInfoMapper.getUserregisterinfoList("lh","17635692127");
-        for (UserRegisterInfo u :userRegisterInfoList) {
-            System.out.println(u.getUserName());
-        }
-    }
+
     @Test
     public void addUserregisterinfo(){
         UserRegisterInfo userRegisterInfo=new UserRegisterInfo();
