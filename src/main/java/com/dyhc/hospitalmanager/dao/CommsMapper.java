@@ -9,4 +9,6 @@ import tk.mybatis.mapper.common.MySqlMapper;
  * @param <T>
  */
 public interface CommsMapper<T> extends Mapper<T>,MySqlMapper<T> {
+
+
 }

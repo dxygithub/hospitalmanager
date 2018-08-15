@@ -4,4 +4,66 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dyhc.hospitalmanager.dao.CostDetailMapper">
 
+    <!-- 缴费 状态为0 -->
+    <insert id="addCostDetailByPayment">
+        INSERT INTO `hospital_test_manager_db`.`cost_detail` (
+          `cost_detail_id`,
+          `test_number`,
+          `medical_id`,
+          `cost_type`,
+          `date`,
+          `note`
+        )
+        VALUES
+          (
+            null ,
+            #{testNumber},
+            #{medicalId},
+            0,
+            now(),
+            #{note}
+          );
+    </insert>
+
+    <!-- 扣费 状态为1 -->
+    <insert id="addCostDetailByDeductions">
+        INSERT INTO `hospital_test_manager_db`.`cost_detail` (
+          `cost_detail_id`,
+          `test_number`,
+          `medical_id`,
+          `cost_type`,
+          `date`,
+          `note`
+        )
+        VALUES
+          (
+            null ,
+            #{testNumber},
+            #{medicalId},
+            1,
+            now(),
+            #{note}
+          );
+    </insert>
+
+    <!-- 退费 状态为2 -->
+    <insert id="addCostDetailByRefund">
+          INSERT INTO `hospital_test_manager_db`.`cost_detail` (
+          `cost_detail_id`,
+          `test_number`,
+          `medical_id`,
+          `cost_type`,
+          `date`,
+          `note`
+        )
+        VALUES
+          (
+            null ,
+            #{testNumber},
+            #{medicalId},
+            2,
+            now(),
+            #{note}
+          );
+    </insert>
 </mapper>

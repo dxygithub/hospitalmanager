@@ -4,4 +4,47 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dyhc.hospitalmanager.dao.ArchivesMapper">
 
+    <!-- 判断用户是否存档 -->
+    <select id="addarchives" resultType="com.dyhc.hospitalmanager.pojo.Archives">
+        SELECT * FROM `archives`
+        WHERE test_number = #{testnumber}
+    </select>
+
+    <!-- 如果用户存在档案，检查次数加1 -->
+    <update id="updateArchives">
+        UPDATE `archives` SET check_count= check_count+1
+        WHERE `test_number` = #{testnumber}
+    </update>
+
+    <!-- 用户存在档案将用户信息显示出来 -->
+    <select id="findUserRegisterInfoByTestNumber" resultType="com.dyhc.hospitalmanager.pojo.UserRegisterInfo">
+        SELECT u.* FROM `user_register_info` u
+        WHERE EXISTS(
+            SELECT * FROM `archives` a
+            WHERE a.`test_number` = u.test_number
+        )
+        AND u.`test_number`=#{testNumber}
+    </select>
+
+    <!-- 进行存档 -->
+    <insert id="addArchives">
+        INSERT INTO `hospital_test_manager_db`.`archives` (
+          `archives_id`,
+          `test_number`,
+          `check_count`,
+          `archives_ date`
+        )
+        VALUES
+          (
+            #{archivesId},
+            #{testNumber},
+            1,
+            now()
+          );
+    </insert>
+
+    <!-- 查询所有档案 -->
+    <select id="getArchivesList" resultType="com.dyhc.hospitalmanager.pojo.UserRegisterInfo">
+        select * from `archives`
+    </select>
 </mapper>

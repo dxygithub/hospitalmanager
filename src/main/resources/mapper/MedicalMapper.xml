@@ -70,10 +70,44 @@
             <if test="maxValue!=null and maxValue!=''">
                   `max_value` = #{maxValue},
             </if>
-            <if test="isEnalbe!=0">
+            <if test="isEnalbe&lt;0">
                   isEnalbe = #{isEnalbe},
             </if>
         </trim>
         WHERE `medical_id` = #{medicalId};
     </update>
+
+    <!-- 根据组合项id查询体检项 -->
+    <select id="getMedicalByCombinationId" resultType="com.dyhc.hospitalmanager.pojo.Medical">
+      SELECT m.* FROM `medical` m
+      WHERE m.`medical_id` IN(
+          SELECT c.`medical_id` FROM `combination_ medical` c WHERE c.`combination_id` = '0101'
+      )
+    </select>
+
+    <!-- 根据拼音简码查询体检信息 -->
+    <select id="getMedicalList" resultType="com.dyhc.hospitalmanager.pojo.Medical">
+        select * from medical
+        where pingying_code like concat('%',#{namecode},'%')
+    </select>
+
+    <!-- 获取用户的体检项 -->
+    <select id="getMadical" resultType="com.dyhc.hospitalmanager.pojo.Medical">
+        SELECT * FROM `medical` WHERE medical_id IN(
+        SELECT medical_id FROM `user_test_info` WHERE test_number=#{test_number})
+    </select>
+
+    <!-- 获取用户的套餐项 -->
+    <select id="getPackage" resultType="com.dyhc.hospitalmanager.pojo.Medical">
+        SELECT * FROM `medical` WHERE medical_id IN(
+        SELECT medical_id FROM package_medical WHERE `package_id`=(
+        SELECT `package_id` FROM `user_test_info` WHERE test_number=#{test_number}))
+    </select>
+
+    <!-- 获取用户组合项 -->
+    <select id="getCom" resultType="com.dyhc.hospitalmanager.pojo.Medical">
+        SELECT * FROM `medical`  WHERE medical_id IN(
+        SELECT `medical_id` FROM `combination_ medical` WHERE `combination_id` =
+        (SELECT combination_id FROM `user_test_info` WHERE test_number=#{test_number}))
+    </select>
 </mapper>

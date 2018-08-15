@@ -4,4 +4,28 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dyhc.hospitalmanager.dao.MedicalEventsMapper">
 
+    <!-- 修改体检明细 -->
+    <update id="updMedicalEvents">
+        UPDATE
+          `hospital_test_manager_db`.`medical _events`
+        SET
+          <trim suffixOverrides=",">
+            <if test="eventsName!=null and eventsName!=''">`events_name` = #{eventsName},</if>
+            <if test="unit!=null and unit!=''">`unit` = #{unit},</if>
+            <if test="referenceLowerLimit!=null and referenceLowerLimit!=''">`reference_ lower_limit` = #{referenceLowerLimit},</if>
+            <if test="referenceUpperLimit!=null and referenceUpperLimit!=''">`reference_ upper_limit` = #{referenceUpperLimit},</if>
+            <if test="lowTip!=null and lowTip!=''">`low_tip` = #{lowTip},</if>
+            <if test="highTip!=null and highTip!=''">`high_tip` = #{highTip},</if>
+            <if test="minValue!=null and minValue!=''">`min_value` = #{minValue},</if>
+            <if test="maxValue!=null and maxValue!=''">`max_value` = #{maxValue},</if>
+            <if test="medicalId!=null and medicalId!=''">`medical_id` = #{medicalId}</if>
+          </trim>
+        WHERE `medical_events_id` = #{medicalEventsId};
+    </update>
+
+    <!-- 根据体检项查询体检明细 -->
+    <select id="selMedicalEventsByTestId" resultType="com.dyhc.hospitalmanager.pojo.MedicalEvents">
+        select * from `medical _events`
+        where medical_id=#{medicalId}
+    </select>
 </mapper>

@@ -4,4 +4,45 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dyhc.hospitalmanager.dao.CombinationMapper">
 
+    <!--根据科室id查询所有组合项-->
+    <select id="getCombinationInfoByDesk" resultType="com.dyhc.hospitalmanager.pojo.Combination">
+        SELECT * FROM combination where desk_id=#{deskId} LIMIT #{pageIndex},#{pageSize}
+    </select>
+
+    <!--添加科室组合信息-->
+    <insert id="addCombinationInfo">
+       INSERT INTO combination
+       VALUES(#{combinationId},#{deskId},#{combinationName},#{pinyinCode},#{clinicalSignificance},#{promptInformation},#{normalDesc},#{checkType},#{resultToWay},#{isSpecimen},#{specimenType},#{isEnable})
+    </insert>
+
+    <!--删除科室组合信息-->
+    <update id="delCombinationInfo">
+        UPDATE combination SET isEnable=0 WHERE combination_id=#{combinationId}
+    </update>
+
+    <!--根据id查询科室组合信息-->
+    <select id="getAllCombinationInfoByid" resultType="com.dyhc.hospitalmanager.pojo.Combination">
+        SELECT * FROM combination where combination_id=#{combinationId}
+    </select>
+
+    <!--修改科室组合信息-->
+    <update id="updCombinationInfo">
+        UPDATE
+          `combination`
+        SET
+          <trim suffixOverrides=",">
+              `desk_id` = #{deskId},
+              `combinationName` = #{combinationName},
+              `pinyin_code` = #{pinyinCode},
+              `clinical_significance` = #{clinicalSignificance},
+              `prompt_information` = #{promptInformation},
+              `normalDesc` = #{normalDesc},
+              `checkType` = #{checkType},
+              `resultToWay` = #{resultToWay},
+              `isSpecimen` = #{isSpecimen},
+              `specimen_type` = #{specimenType},
+              `isEnable` = #{isEnable}
+          </trim>
+        WHERE `combination_id` = #{combinationId};
+    </update>
 </mapper>
