@@ -74,6 +74,20 @@ public class UnitsController {
     }
 
     /**
+     * 根据单位编号获取单位信息
+     * @param uid
+     * @return
+     */
+    @RequestMapping("/getUnits")
+    @ResponseBody
+    public String getUnits(String uid){
+        Units units=this.unitsService.getUnits(uid);
+        String json=JSON.toJSONString(units);
+        return json;
+    }
+
+
+    /**
      * 删除单位信息
      * @return
      */
