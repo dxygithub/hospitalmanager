@@ -37,4 +37,17 @@ public interface UnitsService {
      * @return
      */
     int delUnits(@Param("unitsId") String unitsId);
+
+    /**
+     * 根据单位编号获取单位信息
+     * @param uid
+     * @return
+     */
+    Units getUnits(@Param("uid") String uid);
+
+    /**
+     * 获取最后一个单位编号
+     * @return
+     */
+    String getUnitsNumber();
 }
