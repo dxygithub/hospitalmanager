@@ -39,6 +39,12 @@ public class UnitsServiceImpl implements UnitsService {
      */
     public int addUnits(Units units) {
         int result=0;
+        String unitsId=this.getUnitsNumber();//获取最后一个单位信息编号
+        if(unitsId!=null&&!"".equals(unitsId)){
+            Integer tempId=Integer.parseInt(unitsId)+1;
+            String newUnitId= String.format("%04d",tempId);//生成新的单位编号
+            units.setUnitsId(newUnitId);
+        }
         try {
             result=this.unitsMapper.addUnits(units);
         } catch (Exception e) {
@@ -75,5 +81,34 @@ public class UnitsServiceImpl implements UnitsService {
             e.printStackTrace();
         }
         return result;
+    }
+
+    /**
+     * 根据单位编号获取单位信息
+     * @param uid
+     * @return
+     */
+    public Units getUnits(String uid) {
+        Units units=null;
+        try {
+            units=this.unitsMapper.getUnits(uid);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return units;
+    }
+
+    /**
+     * 获取最后一个单位编号
+     * @return
+     */
+    public String getUnitsNumber() {
+        String unitId="";
+        try {
+            unitId=this.unitsMapper.getUnitsNumber();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return unitId;
     }
 }
