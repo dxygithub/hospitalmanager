@@ -15,7 +15,7 @@ public interface UnitsMapper {
      * 查询所有单位
      * @return
      */
-    List<Units> getAllUnitsList();
+    List<Units> getAllUnitsList() throws Exception;
 
     /**
      * 添加单位
