@@ -43,7 +43,7 @@ public interface UnitsMapper {
      * @param uid
      * @return
      */
-    Units getUnits(String uid) throws Exception;
+    Units getUnits(@Param("uid") String uid) throws Exception;
 
     /**
      * 获取最后一个单位编号
