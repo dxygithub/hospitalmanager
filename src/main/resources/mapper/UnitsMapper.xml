@@ -90,4 +90,14 @@
         update units set isdelete = 0
         where units_id = #{unitsId}
     </update>
+
+    <!--根据单位编号获取单位信息-->
+    <select id="getUnits" resultType="com.dyhc.hospitalmanager.pojo.Units">
+      select * from units where units_id=#{uid};
+    </select>
+
+    <!--获取最后一个单位编号-->
+    <select id="getUnitsNumber" resultType="string">
+        SELECT units_id FROM units ORDER BY units_id DESC LIMIT 1;
+    </select>
 </mapper>
