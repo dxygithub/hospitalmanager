@@ -10,6 +10,11 @@ import java.util.List;
 @Mapper
 @Repository
 public interface RoleTypeMapper {
+    /**
+     * 获取所有角色类型
+     * @return
+     */
+    List<RoleType> getRoleType() throws Exception;
 
     /**
      * 新增角色类型
