@@ -42,6 +42,8 @@ public class DeskServiceImpl implements DeskService {
         return deskMapper.addDesk(desk);
     }
 
+
+
     /**
      * 修改科室
      * @param desk 科室对象
