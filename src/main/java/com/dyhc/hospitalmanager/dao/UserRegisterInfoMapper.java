@@ -36,12 +36,11 @@ public interface UserRegisterInfoMapper {
     List<UserRegisterInfo> findUserRegisterUsername(@Param("nameCode") String nameCode, @Param("username")String username,@Param("pageIndex")Integer pageIndex,@Param("pageSize")Integer pageSize) throws Exception;
 
     /**
-     *  根据用户编号查看存档信息 存在这个用户 就把用户信息显示出来,并且检查次数加1==>updArchivesCheckCount()方法
+     *  根据用户编号查看登记信息
      * @param testNumber 用户编号
      * @return 用户登记信息
      */
     UserRegisterInfo findUserRegisterInfoByTestNumber(@Param("testNumber") String testNumber) throws Exception;
-
 
     /**
      *  进行用户登录信息

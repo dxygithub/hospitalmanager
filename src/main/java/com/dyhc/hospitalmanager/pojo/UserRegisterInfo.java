@@ -25,7 +25,7 @@ public class UserRegisterInfo {
     private String workNumber;
     private String personType;
     private int status;
-    private Integer belongtoUnits;
+    private String belongtoUnits;
     @JSONField(format="yyyy-MM-dd")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createTime;
@@ -163,11 +163,11 @@ public class UserRegisterInfo {
 
     @Basic
     @Column(name = "belongto_units")
-    public Integer getBelongtoUnits() {
+    public String getBelongtoUnits() {
         return belongtoUnits;
     }
 
-    public void setBelongtoUnits(Integer belongtoUnits) {
+    public void setBelongtoUnits(String belongtoUnits) {
         this.belongtoUnits = belongtoUnits;
     }
 

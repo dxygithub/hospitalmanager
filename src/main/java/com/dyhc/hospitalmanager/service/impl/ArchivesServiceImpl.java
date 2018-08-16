@@ -13,4 +13,16 @@ public class ArchivesServiceImpl implements ArchivesService {
     private ArchivesMapper archivesMapper;
 
 
+    @Override
+    public Integer getUserCheckCount(String testNumber) {
+        Integer checkCount = 0;
+        try {
+            checkCount=archivesMapper.getUserCheckCount(testNumber);
+            if(checkCount==null)
+                checkCount=0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return checkCount;
+    }
 }
