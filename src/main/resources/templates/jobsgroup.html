@@ -36,7 +36,7 @@
 				<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
 				<li class="layui-nav-item ">
 					<a href="javascript:;">体检单位</a>
-					<dl class="layui-nav-child">
+					<dl class="layui-nav-child units">
 						<dd>
 							<a href="javascript:;">单位1</a>
 							<dl class="layui-nav-child">
@@ -85,20 +85,20 @@
 						<div class="layui-form-item" style="width: 500px;">
 							<label class="layui-form-label">单位名称：</label>
 							<div class="layui-input-block" style="width: 500px;">
-								<input type="text" name="unitsname" required lay-verify="required" readonly="readonly" placeholder="(只读)" autocomplete="off" class="layui-input">
+								<input type="text" name="unitsname" required lay-verify="required" readonly="readonly"  autocomplete="off" class="layui-input">
 							</div>
 						</div>
 
 						<div class="layui-form-item layui-inline" style="width: 400px;">
 							<label class="layui-form-label">分组编号：</label>
 							<div class="layui-input-block" style="width: 200px;">
-								<input type="text" name="unitsgroupid" placeholder="(只读)" readonly="readonly" autocomplete="off" class="layui-input">
+								<input type="text" name="unitsgroupid"  readonly="readonly" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-form-item layui-inline" style="width: 400px;">
 							<label class="layui-form-label">分组名称：</label>
 							<div class="layui-input-block" style="width: 200px;">
-								<input type="text" name="groupname" placeholder="(只读)" readonly="readonly" autocomplete="off" class="layui-input">
+								<input type="text" name="groupname" placeholder="请输入分组名称" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 
@@ -221,6 +221,81 @@
 		</div>
 		<script src="/layui.js"></script>
 		<script src="/js/jobsgroup.js"></script>
+		<script src="/js/jquery-3.2.1.js"></script>
+		<script>
+			var element;
+            layui.use(['element'], function() {
+                 element=layui.element,
+                    $=layui.jquery;
+                getAllUnits();
+                element.init();
+            });
+
+
+
+
+			/*$(function () {
+                getAllUnits();
+            });*/
+			
+
+			//获取所有单位信息
+			function getAllUnits() {
+                $.ajax({
+                    url:"/getAllUnits",
+                    type:"post",
+                    dataType:"json",
+                    success:function (data) {
+                        var dd="";
+                        $.each(data,function (i,e) {
+                            dd+="<dd>" +
+                                "<a href='javascript:getUnitsGroupInfo(\""+e.unitsId+"\",\""+e.unitsName+"\")' name='"+e.unitsId+"'>"+e.unitsName+"</a>" +
+                                "</dd>";
+                        });
+                        $(".units").html(dd);
+
+                    }
+                });
+            }
+
+            //根据单位编号获取所有分组信息
+            function getUnitsGroupInfo(unitId,unitsName) {
+				$.ajax({
+					url:"/getAllUnitGroupInfo",
+					type:"post",
+					data:{"unitId":unitId},
+					dataType:"json",
+					success:function (data) {
+						var dd="";
+						$.each(data,function (i,e) {
+							dd+="<dl class='layui-nav-child unitgroup'>" +
+                                "<dd>" +
+                                "<a href='javascript:;'>"+e.groupName+"</a>" +
+                                "</dd>" +
+                                "</dl>";
+                        });
+						$(".unitgroup").remove();
+						$("a[name='"+unitId+"']").after(dd);
+						$("input[name='unitsname']").val(unitsName);
+                        getNewUnitsGroupId(unitId);
+						element.init();
+                    }
+				});
+            }
+
+            //获取当前公司下新的分组编号
+            function getNewUnitsGroupId(unitId) {
+				$.ajax({
+					url:"/getNewUnitGroupId",
+					type:"post",
+					data:{"UnitId":unitId},
+					dataType:"text",
+					success:function (data) {
+						$("input[name='unitsgroupid']").val(data);
+                    }
+				});
+            }
+		</script>
 	</body>
 
 </html>
