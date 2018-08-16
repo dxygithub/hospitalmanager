@@ -11,9 +11,10 @@
     </select>
 
     <!-- 根据体检项项编号查询该体检项 -->
-    <select id="selMedicalById" resultType="com.dyhc.hospitalmanager.pojo.Medical">
-      select * from medical
-      where medical_id = #{medicalId}
+    <select id="selMedicaltestNumber" resultType="com.dyhc.hospitalmanager.pojo.Medical">
+      SELECT medical.`medical_id`,medical.`project_name`,user_test_info.`test_status`,medical.`price`
+ FROM medical INNER JOIN user_test_info ON medical.`medical_id`=user_test_info.`medical_id`
+ WHERE user_test_info.`test_number`=#{testNumber}
     </select>
 
     <!-- 添加体检项 -->

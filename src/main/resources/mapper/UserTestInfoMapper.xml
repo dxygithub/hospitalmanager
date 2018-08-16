@@ -3,5 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dyhc.hospitalmanager.dao.UserTestInfoMapper">
-
+    <select id="selUserTestInfoById" resultType="com.dyhc.hospitalmanager.pojo.UserRegisterInfo">
+        SELECT user_register_info.* FROM user_test_info INNER JOIN user_register_info
+        ON user_register_info.`test_number`=user_test_info.`test_number`
+        WHERE user_test_info.`test_number`=#{testNumber}
+    </select>
 </mapper>
