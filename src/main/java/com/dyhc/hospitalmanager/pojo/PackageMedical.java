@@ -10,6 +10,24 @@ public class PackageMedical {
     private int packageId;
     private String combinationId;
     private String medicalId;
+    private String combinationName;//组合项名称
+    private String medicalName;//体检项名称
+
+    public String getCombinationName() {
+        return combinationName;
+    }
+
+    public void setCombinationName(String combinationName) {
+        this.combinationName = combinationName;
+    }
+
+    public String getMedicalName() {
+        return medicalName;
+    }
+
+    public void setMedicalName(String medicalName) {
+        this.medicalName = medicalName;
+    }
 
     @Id
     @Column(name = "package_medical_id")
