@@ -34,6 +34,7 @@ layui.use(['element', 'layer'], function(){
           }
       },"text");
       getMadical(testNumber);
+      getCom(testNumber);
       getPackage(testNumber);
   });
 
@@ -74,7 +75,7 @@ layui.use(['element', 'layer'], function(){
   }
 
     //获取用户的组合项
-    function getPackage(testNumber) {
+    function getCom(testNumber) {
         var comContent="";
         var PackageContent="";
         $$.getJSON("/getPackage",{"testNumber":testNumber},function (date) {
@@ -104,13 +105,15 @@ layui.use(['element', 'layer'], function(){
             $$("#com").html(comContent);
             element.init();
         })
+    }
+
+    function getPackage(testNumber) {
 
     }
 
   //获取登录信息
   function getRoleInfo() {
       $$.get("/getLoginRole.do",{},function (date) {
-          console.log(date);
           $$(".username").text(date.roleName);
       },"json");
   }
