@@ -25,7 +25,7 @@
 		</div>
 		<div class="layui-container layui-row" style="margin-top: 1%;">
 			<div class="layui-col-md9">
-				欢迎您，尊敬的科室医生：<label class="username">admin</label>
+				欢迎您，尊敬的科室医生：<label class="username">$${loginRoleInfo}</label>
 			</div>
 			<div class="layui-col-md3">
 				<label id="nowdate"></label>
@@ -52,6 +52,7 @@
 			<div class="site-mobile-shade"></div>
 
 			<div class="fly-panel fly-panel-user" pad20>
+				<form class="layui-form">
 				<div class="layui-tab layui-tab-brief" lay-filter="user" id="LAY_msg" style="margin-top: 15px;">
 					<div class="layui-row">
 						<div class="layui-col-md10">
@@ -158,10 +159,10 @@
 					</div>
 				</div>
 				<div style="text-align: center; margin-top: 1%;">
-					<button style="width: 200px; height: 50px;" class="layui-btn layui-btn-sm">点击提交</button>
+					<button style="width: 200px; height: 50px;" class="layui-btn layui-btn-sm" lay-submit lay-filter="formDemo">点击提交</button>
 				</div>
 			</div>
-
+			</form>
 		</div>
 
 		</div>
