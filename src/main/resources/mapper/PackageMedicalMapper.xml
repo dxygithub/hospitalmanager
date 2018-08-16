@@ -6,6 +6,8 @@
 
     <!-- 显示套餐表下边的组合项的下边的体检项以及基本体检项 -->
     <select id="getPackageInfoByPackageId" resultType="com.dyhc.hospitalmanager.pojo.PackageMedical">
-        select * from package_medical where packageId=#{packageId}
+        SELECT p.*,c.`combinationName` AS combinationName,m.`project_name` AS medicalName FROM `package_medical` AS p LEFT JOIN `combination` AS c ON p.`combination_id`=c.`combination_id`
+LEFT JOIN `medical` AS m ON p.`medical_id`=m.`medical_id`
+WHERE p.`package_id`=#{packageId}
     </select>
 </mapper>
