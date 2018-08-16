@@ -2,6 +2,7 @@ package com.dyhc.hospitalmanager.dao;
 
 import com.dyhc.hospitalmanager.pojo.Medical;
 import com.dyhc.hospitalmanager.pojo.PackageMedical;
+import com.dyhc.hospitalmanager.pojo.UserTestInfo;
 import com.dyhc.hospitalmanager.pojo.conditional.MedicalConditional;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -62,7 +63,7 @@ public interface MedicalMapper {
      * @return
      * @throws Exception
      */
-    List<MedicalConditional> getMadical(@Param("test_number") String test_number)throws Exception;
+    List<Medical> getMadical(@Param("test_number") String test_number)throws Exception;
 
     /**
      * 获取用户的套餐项
@@ -70,7 +71,7 @@ public interface MedicalMapper {
      * @return
      * @throws Exception
      */
-    List<MedicalConditional> getPackage(@Param("test_number")String test_number)throws Exception;
+    List<Medical> getPackage(@Param("test_number")String test_number)throws Exception;
 
     /**
      * 获取用户组合项
@@ -78,5 +79,5 @@ public interface MedicalMapper {
      * @return
      * @throws Exception
      */
-    List<MedicalConditional> getCom(@Param("test_number")String test_number)throws Exception;
+    List<Medical> getCom(@Param("test_number")String test_number)throws Exception;
 }

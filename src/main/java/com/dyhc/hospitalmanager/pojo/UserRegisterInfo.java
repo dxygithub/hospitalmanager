@@ -1,6 +1,8 @@
 package com.dyhc.hospitalmanager.pojo;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.dyhc.hospitalmanager.util.CustomDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,6 +17,7 @@ public class UserRegisterInfo {
     private int age;
     @JSONField(format="yyyy-MM-dd")
     @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonSerialize(using = CustomDateSerializer.class)
     private Date born;
     private String sex;
     private String idCard;
