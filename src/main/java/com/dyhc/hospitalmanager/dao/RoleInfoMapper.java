@@ -47,5 +47,5 @@ public interface RoleInfoMapper {
      * @param pwd
      * @return
      */
-    RoleInfo login(@Param("userName") String userName,@Param("pwd") String pwd);
+    RoleInfo login(@Param("userName") String userName,@Param("pwd") String pwd) throws Exception;
 }

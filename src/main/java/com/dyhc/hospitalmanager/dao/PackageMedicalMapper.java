@@ -16,5 +16,5 @@ public interface PackageMedicalMapper {
      * @param packageId
      * @return
      */
-    List<PackageMedical> getPackageInfoByPackageId(@Param("packageId") int packageId );
+    List<PackageMedical> getPackageInfoByPackageId(@Param("packageId") int packageId ) throws Exception;
 }
