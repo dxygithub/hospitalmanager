@@ -47,4 +47,10 @@
     <select id="getArchivesList" resultType="com.dyhc.hospitalmanager.pojo.UserRegisterInfo">
         select * from `archives`
     </select>
+
+    <!-- 根据用户编号，查询该用户的检查记录 -->
+    <select id="getUserCheckCount" resultType="int">
+        SELECT check_count FROM `archives`
+        WHERE test_number = #{testNumber}
+    </select>
 </mapper>

@@ -3,6 +3,7 @@ package com.dyhc.hospitalmanager.dao;
 import com.dyhc.hospitalmanager.pojo.Medical;
 import com.dyhc.hospitalmanager.pojo.PackageMedical;
 import com.dyhc.hospitalmanager.pojo.UserTestInfo;
+import com.dyhc.hospitalmanager.pojo.conditional.MedicalConditional;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -22,10 +23,10 @@ public interface MedicalMapper {
 
     /**
      * 根据体检项编号查询该项目
-     * @param testNumber 项目项编号
+     * @param medicalId 项目项编号
      * @return
      */
-    List<UserTestInfo> selMedicaltestNumber(@Param("testNumber")String testNumber) throws Exception;
+    Medical selMedicalById(@Param("medicalId") String medicalId) throws Exception;
 
     /**
      * 新增体检项

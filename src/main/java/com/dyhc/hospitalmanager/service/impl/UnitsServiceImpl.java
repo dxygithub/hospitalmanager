@@ -110,4 +110,14 @@ public class UnitsServiceImpl implements UnitsService {
         }
         return newUnitId;
     }
+
+    @Override
+    public String getUnitsName(String unitsId) {
+        try {
+            return unitsMapper.getUnitsName(unitsId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

@@ -68,6 +68,7 @@ public class UserRegisterInfoController {
     public  String sendnurseRegistration(){
         return "nurseRegistration";
     }
+
     /**
      * 进行用户登记信息
      * @param userRegisterInfo
@@ -86,7 +87,13 @@ public class UserRegisterInfoController {
             System.out.println("新增失败");
         }
         return data;
-
     }
+
+    @RequestMapping("/getUserRegisterInfoByTestNumber.do")
+    @ResponseBody
+    public UserRegisterInfo getUserRegisterInfoByTestNumber(String testNumber){
+        return userRegisterInfoService.findUserRegisterInfoByTestNumber(testNumber);
+    }
+
 }
 
