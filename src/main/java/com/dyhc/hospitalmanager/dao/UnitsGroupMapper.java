@@ -38,4 +38,17 @@ public interface UnitsGroupMapper {
      * @return
      */
     int delUnitsGroup(@Param("unitsGroupId") String unitsGroupId) throws Exception;
+
+    /**
+     * 根据单位分组编号获取单位分组信息
+     * @param unitsGroupId
+     * @return
+     */
+    UnitsGroup getUnitsGroup(@Param("unitsGroupId") String unitsGroupId) throws Exception;
+
+    /**
+     * 获取最指定单位下的最后一个分组编号
+     * @return
+     */
+    String getNewUbitsGroupId(@Param("unitId") String unitId) throws Exception;
 }
