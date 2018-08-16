@@ -3,5 +3,20 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dyhc.hospitalmanager.dao.GroupOrTestInfoMapper">
-
+        
+    <insert id="addGroupOrTestInfoMapper" parameterType="com.dyhc.hospitalmanager.pojo.GroupOrTestInfo">
+        INSERT INTO `group_or_test_info` (
+  `units_group_id`,
+  `medical_id`,
+  `combination_id`,
+  `package_id`
+)
+VALUES
+  (
+    #{unitsGroupId},
+    #{medicalId},
+    #{combinationId},
+    #{packageId}
+  );
+    </insert>
 </mapper>

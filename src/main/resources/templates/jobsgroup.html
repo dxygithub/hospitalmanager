@@ -36,7 +36,7 @@
 				<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
 				<li class="layui-nav-item ">
 					<a href="javascript:;">体检单位</a>
-					<dl class="layui-nav-child">
+					<dl class="layui-nav-child units">
 						<dd>
 							<a href="javascript:;">单位1</a>
 							<dl class="layui-nav-child">
@@ -82,41 +82,42 @@
 				</div>
 				<div style="margin-top:2%;">
 					<form class="layui-form" action="">
+						<input type="hidden" name="unitsId"/>
 						<div class="layui-form-item" style="width: 500px;">
 							<label class="layui-form-label">单位名称：</label>
 							<div class="layui-input-block" style="width: 500px;">
-								<input type="text" name="unitsname" required lay-verify="required" readonly="readonly" placeholder="(只读)" autocomplete="off" class="layui-input">
+								<input type="text" name="unitsname" required lay-verify="required" readonly="readonly"  autocomplete="off" class="layui-input">
 							</div>
 						</div>
 
 						<div class="layui-form-item layui-inline" style="width: 400px;">
 							<label class="layui-form-label">分组编号：</label>
 							<div class="layui-input-block" style="width: 200px;">
-								<input type="text" name="unitsgroupid" placeholder="(只读)" readonly="readonly" autocomplete="off" class="layui-input">
+								<input type="text" name="unitsGroupId"  readonly="readonly" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-form-item layui-inline" style="width: 400px;">
 							<label class="layui-form-label">分组名称：</label>
 							<div class="layui-input-block" style="width: 200px;">
-								<input type="text" name="groupname" placeholder="(只读)" readonly="readonly" autocomplete="off" class="layui-input">
+								<input type="text" name="groupName" placeholder="请输入分组名称" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 
 						<div class="layui-form-item">
 							<label class="layui-form-label">婚姻状况：</label>
 							<div class="layui-input-block">
-								<input type="radio" name="maritalstatus" value="0" title="未婚" checked>
-								<input type="radio" name="maritalstatus" value="1" title="已婚">
-								<input type="radio" name="maritalstatus" value="1" title="不限">
+								<input type="radio" name="maritalCondition" value="0" title="未婚" checked>
+								<input type="radio" name="maritalCondition" value="1" title="已婚">
+								<input type="radio" name="maritalCondition" value="1" title="不限">
 							</div>
 						</div>
 
 						<div class="layui-form-item">
 							<label class="layui-form-label">性别：</label>
 							<div class="layui-input-block">
-								<input type="radio" name="sex" value="0" title="男" checked>
-								<input type="radio" name="sex" value="1" title="女">
-								<input type="radio" name="sex" value="1" title="不限">
+								<input type="radio" name="sexCondition" value="0" title="男" checked>
+								<input type="radio" name="sexCondition" value="1" title="女">
+								<input type="radio" name="sexCondition" value="1" title="不限">
 							</div>
 						</div>
 
@@ -124,13 +125,13 @@
 							<div class="layui-inline">
 								<label class="layui-form-label">年龄下限：</label>
 								<div class="layui-input-block" style="width: 200px;">
-									<input type="text" name="ageupperlimit" placeholder="请输入年龄下限" autocomplete="off" class="layui-input">
+									<input type="text" name="ageUpperLimit" placeholder="请输入年龄下限" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 							<div class="layui-inline">
 								<label class="layui-form-label">年龄下限：</label>
 								<div class="layui-input-block" style="width: 200px;">
-									<input type="text" name="agelowerlimit" placeholder="请输入年龄下限" autocomplete="off" class="layui-input">
+									<input type="text" name="ageLowerLimit" placeholder="请输入年龄下限" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 						</div>
@@ -138,14 +139,14 @@
 						<div class="layui-form-item" style="width: 500px;">
 							<label class="layui-form-label">职务：</label>
 							<div class="layui-input-block" style="width: 500px;">
-								<input type="text" name="dutycondition" required lay-verify="required" placeholder="请输入公司职务" autocomplete="off" class="layui-input">
+								<input type="text" name="dutyCondition" required lay-verify="required" placeholder="请输入公司职务" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div>
 						<div class="layui-form-item">
 							<label class="layui-form-label">选择套餐：</label>
 							<div class="layui-input-block">
-								<select name="city" lay-verify="required">
+								<select name="package" lay-verify="required">
 									<option value=""></option>
 									<option value="0">北京</option>
 									<option value="1">上海</option>
@@ -188,7 +189,7 @@
 
 						<div class="layui-form-item">
 							<div class="layui-input-block">
-								<button class="layui-btn" lay-submit lay-filter="formDemo">保存</button>
+								<button class="layui-btn" lay-filter="formDemo" onclick="addUnitsGroup()">保存</button>
 							</div>
 						</div>
 					</form>
@@ -221,6 +222,124 @@
 		</div>
 		<script src="/layui.js"></script>
 		<script src="/js/jobsgroup.js"></script>
+		<script src="/js/jquery-3.2.1.js"></script>
+		<script>
+			var element;
+			var form;
+            layui.use(['element','form'], function() {
+                 element=layui.element,
+					 form=layui.form,
+                    $=layui.jquery;
+                getAllUnits();
+                getAllPackage();
+
+                element.init();
+            });
+
+
+
+
+			/*$(function () {
+                getAllUnits();
+            });*/
+			
+
+			//获取所有单位信息
+			function getAllUnits() {
+                $.ajax({
+                    url:"/getAllUnits",
+                    type:"post",
+                    dataType:"json",
+                    success:function (data) {
+                        var dd="";
+                        $.each(data,function (i,e) {
+                            dd+="<dd>" +
+                                "<a href='javascript:getUnitsGroupInfo(\""+e.unitsId+"\",\""+e.unitsName+"\")' name='"+e.unitsId+"'>"+e.unitsName+"</a>" +
+                                "</dd>";
+                        });
+                        $(".units").html(dd);
+
+                    }
+                });
+            }
+
+            //根据单位编号获取所有分组信息
+            function getUnitsGroupInfo(unitId,unitsName) {
+				$.ajax({
+					url:"/getAllUnitGroupInfo",
+					type:"post",
+					data:{"unitId":unitId},
+					dataType:"json",
+					success:function (data) {
+						var dd="";
+						$.each(data,function (i,e) {
+							dd+="<dl class='layui-nav-child unitgroup'>" +
+                                "<dd>" +
+                                "<a href='javascript:;'>"+e.groupName+"</a>" +
+                                "</dd>" +
+                                "</dl>";
+                        });
+						$(".unitgroup").remove();
+						$("a[name='"+unitId+"']").after(dd);
+						$("input[name='unitsname']").val(unitsName);
+						$("input[name='unitsId']").val(unitId);
+                        getNewUnitsGroupId(unitId);
+						element.init();
+                    }
+				});
+            }
+
+            //获取当前公司下新的分组编号
+            function getNewUnitsGroupId(unitId) {
+				$.ajax({
+					url:"/getNewUnitGroupId",
+					type:"post",
+					data:{"UnitId":unitId},
+					dataType:"text",
+					success:function (data) {
+						$("input[name='unitsGroupId']").val(data);
+                    }
+				});
+            }
+
+            //获取所有套餐信息
+            function getAllPackage() {
+				$.ajax({
+					url:"/getAllpackage",
+					type:"post",
+					dataType:"json",
+					success:function (data) {
+						var op="<option value='0'>请选择套餐</option>";
+						$.each(data,function (i,e) {
+							op+="<option value='"+e.packageId+"'>"+e.packageName+"</option>";
+                        });
+						$("select[name='package']").html(op);
+
+                        form.render();
+                    }
+				});
+            }
+
+			//添加单位分组信息
+            function addUnitsGroup() {
+				var unitGroupData=$("form").serialize();
+				$.ajax({
+					url:"/addUnitGroup",
+					type:"post",
+					data:unitGroupData,
+					dataType:"json",
+					success:function (data) {
+						if(data.stat=="ok"){
+							alert("保存成功分组信息!");
+						}else {
+                            alert("保存失败分组信息!");
+						}
+                    }
+				});
+            }
+
+
+		</script>
 	</body>
 
 </html>
