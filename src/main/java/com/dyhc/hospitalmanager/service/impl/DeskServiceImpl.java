@@ -59,6 +59,12 @@ public class DeskServiceImpl implements DeskService {
         return deskMapper.delDesk(deskId);
     }
 
+    /**
+     * 根据ID查询
+     * @param deskId
+     * @return
+     * @throws Exception
+     */
     @Override
     public Desk selDeksById(String deskId) throws Exception{
         return deskMapper.selDeksById(deskId);
