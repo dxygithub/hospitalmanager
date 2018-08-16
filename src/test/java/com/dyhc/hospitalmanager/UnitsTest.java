@@ -16,13 +16,7 @@ import java.util.List;
 public class UnitsTest {
     @Resource
     private UnitsMapper unitsMapper;
-    @Test
-    public  void  getAllUnitsList(){
-        List<Units> unitsList =unitsMapper.getAllUnitsList();
-        for (Units u: unitsList) {
-            System.out.println(u.getUnitsPrincipal());
-        }
-    }
+
     @Test
     public  void addUnits(){
         Units units =new Units();

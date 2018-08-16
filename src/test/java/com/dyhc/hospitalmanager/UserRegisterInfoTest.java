@@ -38,7 +38,12 @@ public class UserRegisterInfoTest {
         userRegisterInfo.setBelongtoUnits(2);
         userRegisterInfo.setCreateTime(null);
         userRegisterInfo.setCreateBy(1);
-        int result=userRegisterInfoMapper.addUserregisterinfo(userRegisterInfo);
+        int result= 0;
+        try {
+            result = userRegisterInfoMapper.addUserregisterinfo(userRegisterInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (result>0){
             System.out.println("新增成功！");
         }else {
@@ -48,7 +53,11 @@ public class UserRegisterInfoTest {
     UserRegisterInfo userRegisterInfo=null;
     @Test
     public  void  findUserRegisterInfoByTestNumber(){
-        userRegisterInfo=userRegisterInfoMapper.findUserRegisterInfoByTestNumber("201808110011");
+        try {
+            userRegisterInfo=userRegisterInfoMapper.findUserRegisterInfoByTestNumber("201808110011");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.out.println(userRegisterInfo.getUserName());
 
     }

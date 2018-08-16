@@ -18,21 +18,37 @@ public class ArchivesTest {
     Archives archives=null;
     @Test
     public void addarchives(){
-        archives=archivesMapper.addarchives("20180810001");
+        try {
+            archives=archivesMapper.addarchives("20180810001");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.out.println(archives.getCheckCount());
     }
     @Test
     public  void updateArchives(){
-        int result=archivesMapper.updateArchives("20180810001");
+        try {
+            int result=archivesMapper.updateArchives("20180810001");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     UserRegisterInfo userRegisterInfo=null;
     @Test
     public void findUserRegisterInfoByTestNumber(){
-        userRegisterInfo=archivesMapper.findUserRegisterInfoByTestNumber("20180810001");
+        try {
+            userRegisterInfo=archivesMapper.findUserRegisterInfoByTestNumber("20180810001");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.out.println(userRegisterInfo.getUserName());
     }
     @Test
     public  void addArchives(){
-        int result=archivesMapper.addArchives("0000004","20180810004");
+        try {
+            int result=archivesMapper.addArchives("0000004","20180810004");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
