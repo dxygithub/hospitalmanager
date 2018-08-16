@@ -104,4 +104,15 @@ public class UnitsController {
         return json;
     }
 
+    /**
+     * 获取新的单位编号
+     * @return
+     */
+    @RequestMapping("/getNewUnitNumber")
+    @ResponseBody
+    public String getNewUnitNumber(){
+        String newUnitId=this.unitsService.getUnitsNumber();
+        return newUnitId;
+    }
+
 }
