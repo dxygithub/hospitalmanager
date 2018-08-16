@@ -58,7 +58,7 @@
 						type:"post",
 						success:function (res) {
                             if (res==2){
-
+                                location.href="/departmentInfo";
 							}else if(res==3){
                                 location.href="/NursePre";
 							}
@@ -67,28 +67,15 @@
                             }
                             else if(res==5){
 
-                            }
+                            }else{
+                                alert(res);
+							}
 
                         }
                     });
                     return false;
                 });
             })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 			// layui.use(['form'], function() {
              //    // layer.alert(JSON.stringify(data.field), {

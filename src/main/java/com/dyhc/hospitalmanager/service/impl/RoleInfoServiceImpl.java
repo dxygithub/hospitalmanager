@@ -21,7 +21,12 @@ public class RoleInfoServiceImpl implements RoleInfoService {
      */
     @Override
     public RoleInfo login(String userName, String pwd) {
-        RoleInfo roleInfo=roleInfoMapper.login(userName,pwd);
+        RoleInfo roleInfo= null;
+        try {
+            roleInfo = roleInfoMapper.login(userName,pwd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (roleInfo!=null){
             return roleInfo;
         }else {
