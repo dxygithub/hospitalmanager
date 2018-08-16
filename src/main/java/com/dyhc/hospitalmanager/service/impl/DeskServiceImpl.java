@@ -6,12 +6,24 @@ import com.dyhc.hospitalmanager.service.DeskService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service("deskServiceImpl")
 public class DeskServiceImpl implements DeskService {
 
     @Resource(name = "deskMapper")
     private DeskMapper deskMapper;
+
+    /**
+     * wwm
+     * 查询所有科室
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<Desk> getDeskList() throws Exception {
+        return deskMapper.getDeskList();
+    }
 
     @Override
     public int addDesk(Desk desk) throws Exception{
