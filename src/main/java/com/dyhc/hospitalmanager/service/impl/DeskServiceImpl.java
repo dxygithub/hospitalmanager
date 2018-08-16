@@ -67,6 +67,8 @@ public class DeskServiceImpl implements DeskService {
      */
     @Override
     public Desk selDeksById(String deskId) throws Exception{
+        System.out.println(deskId);
+        System.out.println(deskMapper.selDeksById(deskId));
         return deskMapper.selDeksById(deskId);
     }
 }
