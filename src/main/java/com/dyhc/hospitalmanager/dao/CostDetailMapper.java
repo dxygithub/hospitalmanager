@@ -13,19 +13,19 @@ public interface CostDetailMapper {
      * @param costDetail
      * @return
      */
-    int addCostDetailByPayment(CostDetail costDetail );
+    int addCostDetailByPayment(CostDetail costDetail ) throws  Exception;
 
     /**
      * 扣费 状态为1
      * @param costDetail
      * @return
      */
-    int addCostDetailByDeductions(CostDetail costDetail);
+    int addCostDetailByDeductions(CostDetail costDetail) throws Exception;
 
     /**
      * 退费 状态为2
      * @param costDetail
      * @return
      */
-    int addCostDetailByRefund(CostDetail costDetail);
+    int addCostDetailByRefund(CostDetail costDetail) throws Exception;
 }
