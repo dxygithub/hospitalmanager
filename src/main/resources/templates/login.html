@@ -17,20 +17,20 @@
 			<header class="layui-elip">医疗体检系统登陆</header>
 			<form class="layui-form">
 				<div class="layui-input-inline">
-					<input type="text" name="account" required lay-verify="required" placeholder="账号" autocomplete="off" class="layui-input">
+					<input type="text" name="userName" required lay-verify="required" placeholder="账号" autocomplete="off" class="layui-input">
 				</div>
 				<div class="layui-input-inline">
 					<input type="password" name="password" required lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
 				</div>
 				<div class="layui-input-inline" style="width: 400px;">
-					<input type="radio" name="user" value="科室医生" title="科室医生">
-					<input type="radio" name="user" value="总诊医生" title="总诊医生">
-					<input type="radio" name="user" value="护士" title="护士">
-					<input type="radio" name="user" value="收费处" title="收费处">
+					<input type="radio" name="roleTypeId" value="2" title="科室医生">
+					<input type="radio" name="roleTypeId" value="5" title="总诊医生">
+					<input type="radio" name="roleTypeId" value="3" title="护士">
+					<input type="radio" name="roleTypeId" value="4" title="收费处">
 				</div>
 
 				<div class="layui-input-inline login-btn">
-					<button type="submit" class="layui-btn">登录</button>
+					<button type="submit" lay-submit="" class="layui-btn" lay-filter="demo1">登录</button>
 				</div>
 				<hr/>
 				<!--<div class="layui-input-inline">
@@ -45,15 +45,68 @@
 
 		<script src="/layui.js"></script>
 		<script type="text/javascript">
-			layui.use(['form'], function() {
+            layui.use(['form'], function(){
+                var form = layui.form;
+                var $$=layui.jquery;
+                //监听提交
+                form.on('submit(demo1)', function(data){
+                    var formData=$$(".layui-form").serialize();
+                    $$.ajax({
+                        url:"/login.do",
+                        data:formData,
+                        dataType:"json",
+						type:"post",
+						success:function (res) {
+                            if (res==2){
 
-				// 操作对象
-				var form = layui.form,
-					$ = layui.jquery;
+							}else if(res==3){
+                                location.href="/NursePre";
+							}
+                            else if(res==4){
 
-				// you code ...
+                            }
+                            else if(res==5){
 
-			});
+                            }
+
+                        }
+                    });
+                    return false;
+                });
+            })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			// layui.use(['form'], function() {
+             //    // layer.alert(JSON.stringify(data.field), {
+             //     //    title: '最终的提交信息'
+             //    // })
+             //    // return false;
+			// 	// 操作对象
+			// 	// var form = layui.form,
+			// 	// 	$ = layui.jquery;
+             //    form.on('submit(form)', function(data){
+             //        layer.alert(JSON.stringify(data.field), {
+             //            title: '最终的提交信息'
+             //        })
+             //        return false;
+             //    });
+
+			// });
+
 		</script>
 	</body>
 
