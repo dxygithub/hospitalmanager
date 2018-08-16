@@ -13,6 +13,18 @@ public class UserTestInfo {
     private String packageId;
     private int testStatus;
 
+    public Medical getMedical() {
+        return medical;
+    }
+
+    public void setMedical(Medical medical) {
+        this.medical = medical;
+    }
+
+    private  Medical medical;
+
+
+
     @Id
     @Column(name = "user_test_info_id")
     public int getUserTestInfoId() {
