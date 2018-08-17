@@ -6,12 +6,11 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface UserTestInfoMapper {
-    /**
-     * 通过体检项id查询用户信息
-     */
-    UserRegisterInfo selUserTestInfoById(@Param("testNumber")String testNumber) throws Exception;
+
 }
 

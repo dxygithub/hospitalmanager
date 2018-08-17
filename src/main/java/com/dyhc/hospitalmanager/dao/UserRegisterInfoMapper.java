@@ -53,4 +53,8 @@ public interface UserRegisterInfoMapper {
      * @return
      */
     String selLastUserInfoId() throws Exception;
+    /**
+     * 通过体检项id查询用户信息
+     */
+    UserRegisterInfo selUserTestInfoById(@Param("testNumber")String testNumber) throws Exception;
 }

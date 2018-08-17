@@ -83,5 +83,5 @@ public interface MedicalMapper {
     /**
      * 通过体检编号获取体检项目
      */
-    List<UserTestInfo> selMedicaltestNumber(@Param("testNumber")String testNumber) throws Exception;
+    List<Medical> selMedicaltestNumber(@Param("testNumber")String testNumber) throws Exception;
 }
