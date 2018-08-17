@@ -82,10 +82,6 @@ public class MedicalController {
      * @param testNumber
      * @return
      */
-    @GetMapping("/getPackageCom")
-    @ResponseBody
-    public List<MedicalConditional> getPackage(String testNumber) {
-        return medicalService.getPackage(testNumber);
     public List<MedicalConditional> getPackageCom(String testNumber) {
         return medicalService.getPackageCom(testNumber);
     }

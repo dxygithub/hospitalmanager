@@ -88,6 +88,7 @@ public interface MedicalMapper {
      * @throws Exception
      */
     List<MedicalConditional> getCom(@Param("test_number")String test_number)throws Exception;
+
     /**
      * 通过体检编号获取体检项目
      */
@@ -100,5 +101,4 @@ public interface MedicalMapper {
      * @return
      */
     List<MedicalConditional> getUserDeskMedicalByTestNumber(@Param("testNumber") String testNumber,@Param("deskId") String deskId) throws Exception;
-    List<Medical> selMedicaltestNumber(@Param("testNumber")String testNumber) throws Exception;
 }
