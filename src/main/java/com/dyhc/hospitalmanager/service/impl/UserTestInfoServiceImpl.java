@@ -14,13 +14,4 @@ public class UserTestInfoServiceImpl implements UserTestInfoService {
     @Resource(name = "userTestInfoMapper")
     private UserTestInfoMapper userTestInfoMapper;
 
-    @Override
-    public UserRegisterInfo selUserTestInfoById(String testNumber) {
-        try {
-            return userTestInfoMapper.selUserTestInfoById(testNumber);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 }

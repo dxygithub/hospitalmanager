@@ -85,4 +85,42 @@ public class UserRegisterInfoServiceImpl implements UserRegisterInfoService {
         }
         return result;
     }
+    @Override
+    public UserRegisterInfo selUserTestInfoById(String testNumber) {
+        try {
+            return userRegisterInfoMapper.selUserTestInfoById(testNumber);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 批量新增用户信息
+     * @param userRegisterInfos
+     * @return
+     */
+    public Integer batchInsertUserInfo(List<UserRegisterInfo> userRegisterInfos) {
+        Integer result=null;
+        try {
+            result=this.userRegisterInfoMapper.batchInsertUserInfo(userRegisterInfos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * 查询最后一个编号，生成新的用户ID
+     * @return
+     */
+    public String selLastUserInfoId() {
+        String result="";
+        try {
+            result=this.userRegisterInfoMapper.selLastUserInfoId();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

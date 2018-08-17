@@ -1,6 +1,9 @@
 package com.dyhc.hospitalmanager.pojo;
 
+import com.dyhc.hospitalmanager.pojo.conditional.MedicalConditional;
+
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
@@ -23,7 +26,33 @@ public class UserTestInfo {
 
     private  Medical medical;
 
+    public String getStatus() {
+        return status;
+    }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    //检查状态
+    private String status;
+
+    public MedicalConditional getMedicalConditional() {
+        return medicalConditional;
+    }
+
+    public void setMedicalConditional(MedicalConditional medicalConditional) {
+        this.medicalConditional = medicalConditional;
+    }
+
+    private MedicalConditional medicalConditional;
+    public BigDecimal getPrice(){
+        return medical.getPrice();
+    }
+
+    public String getProjectName(){
+        return medical.getProjectName();
+    }
 
     @Id
     @Column(name = "user_test_info_id")
@@ -78,7 +107,7 @@ public class UserTestInfo {
     @Basic
     @Column(name = "test_status")
     public int getTestStatus() {
-        return testStatus;
+        return medicalConditional.getTest_status();
     }
 
     public void setTestStatus(int testStatus) {

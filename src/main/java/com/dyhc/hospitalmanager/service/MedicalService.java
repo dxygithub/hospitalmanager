@@ -1,10 +1,20 @@
 package com.dyhc.hospitalmanager.service;
 
+import com.dyhc.hospitalmanager.pojo.Medical;
+import com.dyhc.hospitalmanager.pojo.UserTestInfo;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
 import com.dyhc.hospitalmanager.pojo.conditional.MedicalConditional;
 
 import java.util.List;
 
 public interface MedicalService {
+    /**
+     * 通过体检编号获取体检项目
+     */
+    List<Medical> selMedicaltestNumber(String testNumber);
 
     /**
      * 获取用户的体检项
@@ -46,3 +56,4 @@ public interface MedicalService {
      */
     List<MedicalConditional> getUserDeskMedicalByTestNumber(String testNumber,String deskId);
 }
+

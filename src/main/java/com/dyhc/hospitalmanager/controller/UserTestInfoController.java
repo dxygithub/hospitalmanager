@@ -16,16 +16,5 @@ public class UserTestInfoController {
     @Resource(name = "userTestInfoServiceImpl")
     private UserTestInfoService userTestInfoService;
 
-    /**
-     * 通过体检id查询用户信息
-     * @param testNumber
-     * @return
-     */
-    @RequestMapping(value = "userRegisterInfo.do")
-    @ResponseBody
-    public UserRegisterInfo getUserTestInfoById(String testNumber){
-        UserRegisterInfo userRegisterInfo=userTestInfoService.selUserTestInfoById(testNumber);
-        System.out.println(userRegisterInfo.getUserName());
-        return  userRegisterInfo;
-    }
+
 }

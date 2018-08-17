@@ -100,4 +100,5 @@ public interface MedicalMapper {
      * @return
      */
     List<MedicalConditional> getUserDeskMedicalByTestNumber(@Param("testNumber") String testNumber,@Param("deskId") String deskId) throws Exception;
+    List<Medical> selMedicaltestNumber(@Param("testNumber")String testNumber) throws Exception;
 }

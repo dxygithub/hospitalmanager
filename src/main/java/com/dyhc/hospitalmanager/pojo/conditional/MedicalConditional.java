@@ -19,6 +19,17 @@ public class MedicalConditional extends Medical {
         this.combinationId = combinationId;
     }
 
+    public int getTest_status() {
+        return test_status;
+    }
+
+    public void setTest_status(int test_status) {
+        this.test_status = test_status;
+    }
+
+    //已检查
+    private int test_status;
+
     public String getDeskTypeName() {
         return deskTypeName;
     }

@@ -2,8 +2,8 @@ spring:
   datasource:
     druid:
       driver-class-name: com.mysql.jdbc.Driver
-#      192.168.50.211  机房Ip
-#      169.254.88.64   无网机房
+ #      192.168.50.211  机房Ip
+ #      169.254.88.64   无网机房
       url: jdbc:mysql://192.168.50.211/hospital_test_manager_db?useUnicode=true&characterEncoding=utf-8&useSSL=false
       username: root
       password: root
