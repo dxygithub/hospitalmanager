@@ -15,6 +15,11 @@ public class DeskController {
     @Resource(name = "deskServiceImpl")
     private DeskService deskService;
 
+    /**
+     * wwm
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/getAllDesk.do")
     @ResponseBody
     public Object getDesk() throws Exception{
@@ -23,6 +28,12 @@ public class DeskController {
     }
 
 
+    /**
+     * wwm
+     * @param deskId
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/getDeskId.do")
     @ResponseBody
     public Object getIdDesk(@RequestParam("deskId")String deskId) throws Exception{
