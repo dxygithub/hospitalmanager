@@ -93,6 +93,18 @@ public class UserRegisterInfoController {
     public UserRegisterInfo getUserRegisterInfoByTestNumber(String testNumber){
         return userRegisterInfoService.findUserRegisterInfoByTestNumber(testNumber);
     }
+    /**
+     * 通过体检id查询用户信息
+     * @param testNumber
+     * @return
+     */
+    @RequestMapping(value = "/userRegisterInfo.do")
+    @ResponseBody
+    public UserRegisterInfo getUserTestInfoById(String testNumber){
+        UserRegisterInfo userRegisterInfo=userRegisterInfoService.selUserTestInfoById(testNumber);
+        System.out.println(userRegisterInfo.getUserName());
+        return  userRegisterInfo;
+    }
 
     /**
      * 批量新增用户信息
