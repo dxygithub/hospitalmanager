@@ -43,7 +43,6 @@ public class RoleInfoController {
     @ResponseBody
     public RoleInfo getLoginRole(HttpSession session){
         String loing = Commons.loginRoleInfo.toString();
-        System.out.println(loing);
         RoleInfo roleInfo = (RoleInfo)session.getAttribute(loing);
         return roleInfo;
     }

@@ -5,7 +5,7 @@
 <mapper namespace="com.dyhc.hospitalmanager.dao.DeskMapper">
 
     <!-- 查询所有科室 -->
-    <select id="getDeskList">
+    <select id="getDeskList" resultType="com.dyhc.hospitalmanager.pojo.Desk">
         select * from desk
     </select>
 

@@ -100,4 +100,10 @@
     <select id="getUnitsNumber" resultType="string">
         SELECT units_id FROM units ORDER BY units_id DESC LIMIT 1;
     </select>
+
+    <!-- 根据单位编号，查询单位名称 -->
+    <select id="getUnitsName" resultType="string">
+        SELECT units_name FROM units
+        WHERE units_id = #{unitsId}
+    </select>
 </mapper>

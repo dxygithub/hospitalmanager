@@ -1,20 +1,34 @@
 package com.dyhc.hospitalmanager.service;
 
-import com.dyhc.hospitalmanager.pojo.Medical;
+import com.dyhc.hospitalmanager.pojo.conditional.MedicalConditional;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
- * @author duxiaoyu
- * 体检项业务
- */
 public interface MedicalService {
 
     /**
-     * 根据体检项编号查询该项目
-     * @param medicalId 项目项编号
+     * 获取用户的体检项
+     * @param test_number 用户编号
      * @return
+     * @throws Exception
      */
-    Medical selMedicalById(@Param("medicalId") String medicalId);
+    List<MedicalConditional> getMadical(String test_number);
+
+    /**
+     * 获取用户的套餐项
+     * @param test_number 用户编号
+     * @return
+     * @throws Exception
+     */
+    List<MedicalConditional> getPackage(String test_number);
+
+    /**
+     * 获取用户组合项
+     * @param test_number 用户编号
+     * @return
+     * @throws Exception
+     */
+    List<MedicalConditional> getCom(String test_number);
+
 }

@@ -50,4 +50,12 @@ public interface UnitsMapper {
      * @return
      */
     String getUnitsNumber() throws Exception;
+
+    /**
+     * 根据单位编号，查询单位名称
+     * @param unitsId 单位编号
+     * @return
+     * @throws Exception
+     */
+    String getUnitsName(@Param("unitsId") String unitsId) throws Exception;
 }

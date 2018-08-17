@@ -50,4 +50,12 @@ public interface UnitsService {
      * @return
      */
     String getUnitsNumber();
+
+    /**
+     * 根据单位编号，查询单位名称
+     * @param unitsId 单位编号
+     * @return
+     * @throws Exception
+     */
+    String getUnitsName(String unitsId);
 }
