@@ -33,6 +33,15 @@ public class UserRegisterInfo {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createTime;
     private int createBy;
+    private String packageName;//套餐名称
+
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
 
     @Id
     @Column(name = "test_number")
