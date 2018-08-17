@@ -37,7 +37,6 @@ public class DeskServiceImpl implements DeskService {
             deskId="0"+integerDeskId;
         else
             deskId=integerDeskId.toString();
-
         desk.setDeskId(deskId);
         return deskMapper.addDesk(desk);
     }
