@@ -46,10 +46,15 @@ public class UnitsGroupController {
     public String addUnitGroup(UnitsGroup unitsGroup,@RequestParam("package")Integer packageId){
         String json="";
         if(unitsGroup!=null){
+            //添加单位分组
             Integer result=this.unitsGroupService.addUnitsGroup(unitsGroup);
+            //实例化单位分组和体检项关系实例
             GroupOrTestInfo groupOrTestInfo=new GroupOrTestInfo();
+            //设置单位分组编号
             groupOrTestInfo.setUnitsGroupId(unitsGroup.getUnitsGroupId());
+            //设置套餐编号
             groupOrTestInfo.setPackageId(packageId);
+            //添加单位分组和体检项关系
             Integer groupOrTestInfoResult=this.groupOrTestInfoService.addGroupOrTestInfoMapper(groupOrTestInfo);
             if(result>0&&groupOrTestInfoResult>0){
                 json="{\"stat\":\"ok\"}";
