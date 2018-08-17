@@ -12,9 +12,27 @@
 
     <!-- 根据体检项项编号查询该体检项 -->
     <select id="selMedicaltestNumber" resultType="com.dyhc.hospitalmanager.pojo.Medical">
-      SELECT medical.`medical_id`,medical.`project_name`,user_test_info.`test_status`,medical.`price`
- FROM medical INNER JOIN user_test_info ON medical.`medical_id`=user_test_info.`medical_id`
- WHERE user_test_info.`test_number`=#{testNumber}
+        SELECT m.*,uti.`test_status` FROM `user_test_info` uti
+        INNER JOIN `medical` m ON m.`medical_id` = uti.`medical_id`
+        WHERE uti.test_number = #{testNumber}
+        UNION
+        SELECT m.*,uti.`test_status` FROM `user_test_info` uti
+        INNER JOIN `combination_ medical` cm ON uti.`combination_id` = cm.`combination_id`
+        INNER JOIN `medical` m ON cm.`medical_id` = m.`medical_id`
+        WHERE uti.test_number = #{testNumber}
+        UNION
+        SELECT m.*,uti.`test_status`
+        FROM `user_test_info` uti
+        INNER JOIN `package_medical` pm ON uti.package_id = pm.package_id
+        INNER JOIN `combination_ medical` cm ON pm.combination_id = cm.combination_id
+        INNER JOIN `medical` m ON m.`medical_id` = cm.medical_id
+        WHERE uti.test_number = #{testNumber}
+        UNION
+        SELECT m.*,uti.`test_status`
+        FROM `user_test_info` uti
+        INNER JOIN `package_medical` pm ON uti.package_id = pm.package_id
+        INNER JOIN `medical` m ON pm.`medical_id` = m.medical_id
+        WHERE uti.test_number =#{testNumber};
     </select>
 
     <!-- 添加体检项 -->
