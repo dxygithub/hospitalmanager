@@ -48,6 +48,15 @@ public interface UserRegisterInfoMapper {
      * @return
      */
     Integer registerUserInfo(UserRegisterInfo userRegisterInfo) throws Exception;
+
+
+    /**
+     * 批量新增用户信息
+     * @param userRegisterInfos
+     * @return
+     */
+    Integer batchInsertUserInfo(List<UserRegisterInfo> userRegisterInfos) throws Exception;
+
     /**
      * 查询最后一个编号，生成新的用户ID
      * @return

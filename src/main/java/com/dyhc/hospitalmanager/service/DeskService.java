@@ -2,7 +2,16 @@ package com.dyhc.hospitalmanager.service;
 
 import com.dyhc.hospitalmanager.pojo.Desk;
 
+import java.util.List;
+
 public interface DeskService {
+
+    /**
+     * wwm
+     * 查询所有科室
+     * @return
+     */
+    List<Desk> getDeskList() throws Exception;
 
     /**
      * 新增科室

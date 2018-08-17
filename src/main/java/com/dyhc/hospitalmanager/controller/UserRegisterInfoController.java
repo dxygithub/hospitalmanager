@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 public class UserRegisterInfoController {
@@ -93,6 +92,107 @@ public class UserRegisterInfoController {
     @ResponseBody
     public UserRegisterInfo getUserRegisterInfoByTestNumber(String testNumber){
         return userRegisterInfoService.findUserRegisterInfoByTestNumber(testNumber);
+    }
+
+    /**
+     * 批量新增用户信息
+     * @return
+     *//*
+    @RequestMapping("/batchInsertInfo")
+    @ResponseBody
+    public String batchInsertInfo(@RequestParam("userArray") List<UserRegisterInfo> userArray){
+        //实例化用户信息集合
+        List<UserRegisterInfo> userRegisterInfos=new ArrayList<UserRegisterInfo>();
+        UserRegisterInfo user=null;
+        if(userArray!=null){
+            //遍历用户信息数组
+            for(int i=0;i<userArray.length;i++){
+                //获取到用户信息数组
+                String[] tempArray=(String[])userArray[i];
+                //实例化用户
+                user=new UserRegisterInfo();
+                //设置新的用户体检编号
+                user.setTestNumber(this.userRegisterInfoService.selLastUserInfoId());
+                for(int a=0;a<tempArray.length;a++){
+                    if(a==0){
+                        //设置用户姓名
+                        user.setUserName(tempArray[a]);
+                    }else if(a==1){
+                        //设置年龄
+                        user.setAge(Integer.parseInt(tempArray[a]));
+                    }else if(a==2){
+                        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+                        //获取日期
+                        String datetime=tempArray[a];
+                        if(datetime!=null&&!"".equals(datetime)){
+                            //设置出生日期
+                            try {
+                                user.setBorn(sdf.parse(datetime));
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }else if(a==3){
+                        //设置性别
+                        user.setSex(tempArray[a]);
+                    }else if(a==4){
+                        //设置身份证号码
+                        user.setIdCard(tempArray[a]);
+                    }else if(a==5){
+                        //获取婚否状态
+                        String marital_status=tempArray[a];
+                        //设置婚否状态
+                        if("已婚".equals(marital_status)){
+                            user.setMaritalStatus(1);
+                        }else {
+                            user.setMaritalStatus(0);
+                        }
+                    }else if(a==6){
+                        //设置电话号码
+                        user.setTelephone(tempArray[a]);
+                    }else if(a==7){
+                        //获取联系地址
+                        user.setAddress(tempArray[a]);
+                    }else if(a==8){
+                        //职务
+                    }else if(a==9){
+                        user.setBelongtoUnits(tempArray[a]);
+                    }
+                }
+                user.setCreateBy(2);
+                user.setCreateTime(new Date());
+                userRegisterInfos.add(user);
+            }
+        }
+        //批量新增用户
+        Integer result=this.userRegisterInfoService.batchInsertUserInfo(userRegisterInfos);
+        String json="";
+        if(result>0){
+            json="{\"stat\":\"ok\"}";
+        }else {
+            json="{\"stat\":\"no\"}";
+        }
+        return json;
+    }*/
+
+    /**
+     * 批量新增用户信息
+     * @return
+     */
+    @RequestMapping("/batchInsertInfo")
+    @ResponseBody
+    public String batchInsertInfo(@RequestParam("userRegisterInfos") List<UserRegisterInfo> userRegisterInfos){
+        String json="";
+        if(userRegisterInfos!=null){
+            //批量新增用户
+            Integer result=this.userRegisterInfoService.batchInsertUserInfo(userRegisterInfos);
+            if(result>0){
+                json="{\"stat\":\"ok\"}";
+            }else {
+                json="{\"stat\":\"no\"}";
+            }
+        }
+        return json;
     }
 
 }
