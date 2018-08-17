@@ -30,12 +30,12 @@
 		<div class="layui-container fly-marginTop fly-user-main">
 			<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
 				<li class="layui-nav-item">
-					<a href="Tollgatecharge.html">
+					<a href="Tollgatecharge">
 						<i class="layui-icon">&#xe612;</i>收费
 					</a>
 				</li>
 				<li class="layui-nav-item layui-this">
-					<a href="Tollgaterefund.html">
+					<a href="Tollgaterefund">
 						<i class="layui-icon">&#xe65e;</i>退费
 					</a>
 				</li>
@@ -57,7 +57,6 @@
       您的邮箱尚未验证，这比较影响您的帐号安全，<a href="activate.html">立即去激活？</a>
     </div>
     -->
-				<form class="layui-form">
 					<div class="layui-form-item">
 						<label class="layui-form-label">体检编号</label>
 						<div class="layui-input-inline">
@@ -69,30 +68,28 @@
 						<div class="layui-input-inline">
 							<label class="layui-form-label">姓名:</label>
 							<div class="layui-input-block">
-								<input type="text" name="title" required lay-verify="required" autocomplete="off" class="layui-input" value="张三">
+								<input type="text" name="userName" required lay-verify="required" autocomplete="off" class="layui-input" id="userName">
 							</div>
 						</div>
 						<div class="layui-input-inline">
 							<label class="layui-form-label">年龄:</label>
 							<div class="layui-input-block">
-								<input type="text" name="title" required lay-verify="required" autocomplete="off" class="layui-input" value="21">
+								<input type="text" name="age" required lay-verify="required" autocomplete="off" class="layui-input" id="age">
 							</div>
 						</div>
 						<div class="layui-input-inline">
 							<label class="layui-form-label">性别:</label>
 							<div class="layui-input-block">
-								<input type="text" name="title" required lay-verify="required" autocomplete="off" class="layui-input" value="男">
+								<input type="text" name="sex" required lay-verify="required" autocomplete="off" class="layui-input"  id="sex">
 							</div>
 						</div>
 						<div class="layui-input-inline">
 							<label class="layui-form-label">出生日期</label>
 							<div class="layui-input-block">
-								<input type="text" name="title" required lay-verify="required" autocomplete="off" class="layui-input" value="2011-1-11">
+								<input type="text" name="born" required lay-verify="required" autocomplete="off" class="layui-input" id="born">
 							</div>
 						</div>
 					</div>
-
-				</form>
 				<table class="layui-hide" id="test"></table>
 				<div class="layui-container">
 					<div class="layui-row" style="width: 1100px;">
@@ -112,8 +109,6 @@
 									<div class="layui-form-item" style="text-align: right;">
 										<button class="layui-btn" lay-submit lay-filter="formDemo" style="width: 165px;">确认</button>
 									</div>
-									
-
 								</form>
 
 							</div>
@@ -135,6 +130,8 @@
 		</div>
 
 		<script src="/layui.js"></script>
+		<script src="js/jquery-3.2.1.js"></script>
+		<script src="js/tollgatecharge.js"></script>
 		<script>
 			layui.use('table', function() {
 				var table = layui.table;
@@ -144,17 +141,17 @@
 					cellMinWidth: 80,
 					cols: [
 						[{
-								field: 'id',
-								title: '体检序号'
+								field: 'medical.medicalId',
+								title: '体检编号'
 							} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
 							, {
-								field: 'username',
+								field: 'medical.projectName',
 								title: '体检项'
 							}, {
-								field: 'city',
+								field: 'medical.testStatus',
 								title: '是否已检查'
 							}, {
-								field: 'sex',
+								field: 'medical.price',
 								title: '价格'
 							}
 							//    ,{field:'sex', title: '出生年月', sort: true}
