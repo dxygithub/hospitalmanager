@@ -57,4 +57,18 @@
         ORDER BY test_number DESC
         LIMIT 1
     </select>
+
+    <!--对用户信息进行批量新增-->
+    <insert id="batchInsertUserInfo" parameterType="java.util.List">
+         INSERT INTO `hospital_test_manager_db`.`user_register_info` ( `test_number`,`user_name`,`age`,`born`,`sex`,`id_card`,
+              `marital_status`, `telephone`, `address`, `name_code`,`work_number`,`person_type`,
+                `status`,`belongto_units`,`create_time`,`create_by`)
+                values
+                <foreach collection="list" item="user" index="index" separator =",">
+                    (
+                    #{testNumber}, #{userName}, #{age},#{born},#{sex},#{idCard}, #{maritalStatus}, #{telephone},#{address},#{nameCode}
+                    ,#{workNumber}, #{personType},#{status},#{belongtoUnits},now(), #{createBy}
+                    )
+                </foreach>
+    </insert>
 </mapper>
