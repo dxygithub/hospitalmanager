@@ -3,14 +3,21 @@ package com.dyhc.hospitalmanager.controller;
 import com.alibaba.fastjson.JSON;
 import com.dyhc.hospitalmanager.pojo.GroupOrTestInfo;
 import com.dyhc.hospitalmanager.pojo.UnitsGroup;
+import com.dyhc.hospitalmanager.pojo.UserRegisterInfo;
 import com.dyhc.hospitalmanager.service.GroupOrTestInfoService;
 import com.dyhc.hospitalmanager.service.UnitsGroupService;
+import com.dyhc.hospitalmanager.util.ImportExcelUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -123,5 +130,77 @@ public class UnitsGroupController {
     public String getNewUnitGroupId(String UnitId){
         String newUnitGroupId=this.unitsGroupService.getNewUbitsGroupId(UnitId);
         return newUnitGroupId;
+    }
+
+    /**
+     * 返回excel数据
+     * @return
+     */
+    @RequestMapping("/returnExcelData")
+    @ResponseBody
+    public String returnExcelData(@RequestParam("excelFile") MultipartFile excelFile){
+        ImportExcelUtil importExcelUtil=new ImportExcelUtil();
+        //获取文件名称
+        String fileName=excelFile.getName();
+        List<UserRegisterInfo> userRegisterInfos=new ArrayList<UserRegisterInfo>();
+        UserRegisterInfo userRegisterInfo=null;
+        String json="";
+        try {
+            //获取文件流
+            InputStream in=excelFile.getInputStream();
+            List<List<Object>> infos=importExcelUtil.getBankListByExcel(in,fileName);
+            for (List<Object> str:infos){
+                userRegisterInfo=new UserRegisterInfo();
+                for(int i=0;i<str.size();i++){
+                    if(i==0){
+                        //设置用户姓名
+                        userRegisterInfo.setUserName(str.get(i).toString());
+                    }else if(i==1){
+                        //设置年龄
+                        userRegisterInfo.setAge(Integer.parseInt(str.get(i).toString()));
+                    }else if(i==2){
+                        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+                        //获取日期
+                        String datetime=str.get(i).toString();
+                        if(datetime!=null&&!"".equals(datetime)){
+                            //设置出生日期
+                            userRegisterInfo.setBorn(sdf.parse(datetime));
+                        }
+                    }else if(i==3){
+                        //设置性别
+                        userRegisterInfo.setSex(str.get(i).toString());
+                    }else if(i==4){
+                        //设置身份证号码
+                        userRegisterInfo.setIdCard(str.get(i).toString());
+                    }else if(i==5){
+                        //获取婚否状态
+                        String marital_status=str.get(i).toString();
+                        //设置婚否状态
+                        if("已婚".equals(marital_status)){
+                            userRegisterInfo.setMaritalStatus(1);
+                        }else {
+                            userRegisterInfo.setMaritalStatus(0);
+                        }
+                    }else if(i==6){
+                        //设置电话号码
+                        userRegisterInfo.setTelephone(str.get(i).toString());
+                    }else if(i==7){
+                        //获取联系地址
+                        userRegisterInfo.setAddress(str.get(i).toString());
+                    }else if(i==8){
+                        //职务
+                    }else if(i==9){
+                        userRegisterInfo.setBelongtoUnits(str.get(i).toString());
+                    }
+                }
+                //加入用户集合
+                userRegisterInfos.add(userRegisterInfo);
+            }
+            //转化为json
+            json=JSON.toJSONString(userRegisterInfos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return json;
     }
 }
