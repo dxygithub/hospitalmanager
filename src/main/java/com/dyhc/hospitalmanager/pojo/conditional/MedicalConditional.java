@@ -8,6 +8,16 @@ public class MedicalConditional extends Medical {
     private String deskTypeName;
     //体检所属科室名称
     private String deskName;
+    //所属的组合项
+    private String combinationId;
+
+    public String getCombinationId() {
+        return combinationId;
+    }
+
+    public void setCombinationId(String combinationId) {
+        this.combinationId = combinationId;
+    }
 
     public String getDeskTypeName() {
         return deskTypeName;

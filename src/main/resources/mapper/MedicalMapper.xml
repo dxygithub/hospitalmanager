@@ -95,7 +95,7 @@
     <!-- 获取用户的体检项 -->
     <select id="getMadical" resultType="com.dyhc.hospitalmanager.pojo.conditional.MedicalConditional">
         SELECT *,
-        (SELECT desk_type_name FROM`desk_type` dt WHERE dt.desk_type_id = (SELECT d.desk_type_id FROM `desk` d WHERE d.desk_id = m.`desk_id`)) AS desk_type_name,
+          (SELECT desk_type_name FROM`desk_type` dt WHERE dt.desk_type_id = (SELECT d.desk_type_id FROM `desk` d WHERE d.desk_id = m.`desk_id`)) AS desk_type_name,
         (SELECT d.desk_name FROM desk d WHERE d.desk_id = m.`desk_id`) AS deskName
         FROM `medical` m
         WHERE m.`medical_id` IN (
@@ -104,10 +104,10 @@
         )
     </select>
 
-    <!-- 获取用户的套餐项 -->
-    <select id="getPackage" resultType="com.dyhc.hospitalmanager.pojo.conditional.MedicalConditional">
+    <!-- 获取用户组合项 -->
+    <select id="getCom" resultType="com.dyhc.hospitalmanager.pojo.conditional.MedicalConditional">
         SELECT *,
-        (SELECT desk_type_name FROM`desk_type` dt WHERE dt.desk_type_id = (SELECT d.desk_type_id FROM `desk` d WHERE d.desk_id = m.`desk_id`)) AS desk_type_name,
+          (SELECT desk_type_name FROM`desk_type` dt WHERE dt.desk_type_id = (SELECT d.desk_type_id FROM `desk` d WHERE d.desk_id = m.`desk_id`)) AS desk_type_name,
         (SELECT d.desk_name FROM desk d WHERE d.desk_id = m.`desk_id`) AS deskName
         FROM `medical` m
         WHERE m.`medical_id` IN (
@@ -119,18 +119,65 @@
         )
     </select>
 
-    <!-- 获取用户组合项 -->
-    <select id="getCom" resultType="com.dyhc.hospitalmanager.pojo.conditional.MedicalConditional">
+    <!-- 获取用户的套餐项下的体检项 -->
+    <select id="getPackageMedical" resultType="com.dyhc.hospitalmanager.pojo.conditional.MedicalConditional">
         SELECT *,
-        (SELECT desk_type_name FROM`desk_type` dt WHERE dt.desk_type_id = (SELECT d.desk_type_id FROM `desk` d WHERE d.desk_id = m.`desk_id`)) AS desk_type_name
-	,(SELECT d.desk_name FROM desk d WHERE d.desk_id = m.`desk_id`) AS deskName
-        FROM `medical` m
-        WHERE m.`medical_id` IN (
-	    SELECT pm.`medical_id` FROM `package_medical` pm
-	    WHERE pm.`package_id` IN(
-		    SELECT uti.`package_id` FROM `user_test_info` uti
-		    WHERE uti.test_number = #{test_number} AND uti.`package_id` IS NOT NULL AND uti.`test_status` = 0
+            (SELECT desk_type_name FROM`desk_type` dt WHERE dt.desk_type_id = (SELECT d.desk_type_id FROM `desk` d WHERE d.desk_id = m.`desk_id`)) AS desk_type_name
+        ,(SELECT d.desk_name FROM desk d WHERE d.desk_id = m.`desk_id`) AS deskName
+            FROM `medical` m
+            WHERE m.`medical_id` IN (
+            SELECT pm.`medical_id` FROM `package_medical` pm
+            WHERE pm.`medical_id` IS NOT NULL AND pm.`package_id` IN(
+                SELECT uti.`package_id` FROM `user_test_info` uti
+                WHERE uti.test_number = #{test_number} AND uti.`package_id` IS NOT NULL AND uti.`test_status` = 0
+                )
             )
-        )
+    </select>
+
+    <!-- 获取用户套餐项下的组合项的体检项 -->
+    <select id="getPackageCom" resultType="com.dyhc.hospitalmanager.pojo.conditional.MedicalConditional">
+        SELECT m.*,cm.combination_id,
+        (SELECT desk_type_name FROM`desk_type` dt WHERE dt.desk_type_id = (SELECT d.desk_type_id FROM `desk` d WHERE d.desk_id = m.`desk_id`)) AS desk_type_name
+        ,(SELECT d.desk_name FROM desk d WHERE d.desk_id = m.`desk_id`) AS deskName
+        FROM `user_test_info` uti
+        INNER JOIN `package_medical` pm ON uti.package_id = pm.package_id
+        INNER JOIN `combination_ medical` cm ON pm.combination_id = cm.combination_id
+        INNER JOIN `medical` m ON m.`medical_id` = cm.medical_id
+        WHERE uti.test_number = #{test_number}
+    </select>
+
+
+    <!-- 根据用户编号查询该科室下的所有体检项 -->
+    <select id="getUserDeskMedicalByTestNumber" resultType="com.dyhc.hospitalmanager.pojo.conditional.MedicalConditional">
+        SELECT m.*,
+            (SELECT desk_type_name FROM`desk_type` dt WHERE dt.desk_type_id = (SELECT d.desk_type_id FROM `desk` d WHERE d.desk_id = m.`desk_id`)) AS desk_type_name,
+            (SELECT d.desk_name FROM desk d WHERE d.desk_id = m.`desk_id`) AS deskName
+            FROM `medical` m
+            WHERE m.`medical_id` IN (
+                SELECT uti.medical_id FROM `user_test_info` uti
+                WHERE uti.test_number = #{testNumber} AND uti.`medical_id` IS NOT NULL AND uti.`test_status` = 0
+            UNION
+            SELECT cm.`medical_id` FROM `combination_ medical` cm
+                WHERE cm.`combination_id` IN (
+                    SELECT uti.`combination_id` FROM `user_test_info` uti
+                    WHERE uti.test_number =#{testNumber} AND uti.`combination_id` IS NOT NULL AND uti.`test_status` = 0
+                )
+                UNION
+                SELECT cm.`medical_id` FROM `combination_ medical` cm
+                        WHERE cm.`combination_id` IN (
+                            SELECT pm.`combination_id` FROM `package_medical` pm
+                            WHERE pm.`combination_id` IS NOT NULL AND pm.`package_id` IN(
+                                SELECT uti.`package_id` FROM `user_test_info` uti
+                                WHERE uti.test_number = #{testNumber} AND uti.`package_id` IS NOT NULL AND uti.`test_status` = 0
+                            )
+                )
+            UNION
+            SELECT pm.`medical_id` FROM `package_medical` pm
+                            WHERE pm.`medical_id` IS NOT NULL AND pm.`package_id` IN(
+                                SELECT uti.`package_id` FROM `user_test_info` uti
+                                WHERE uti.test_number = #{testNumber} AND uti.`package_id` IS NOT NULL AND uti.`test_status` = 0
+                            )
+            )
+    AND m.`desk_id` = #{deskId}
     </select>
 </mapper>

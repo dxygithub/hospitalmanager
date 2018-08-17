@@ -66,12 +66,20 @@ public interface MedicalMapper {
     List<MedicalConditional> getMadical(@Param("test_number") String test_number)throws Exception;
 
     /**
-     * 获取用户的套餐项
+     * 获取用户的套餐项下的体检项
      * @param test_number 用户编号
      * @return
      * @throws Exception
      */
-    List<MedicalConditional> getPackage(@Param("test_number")String test_number)throws Exception;
+    List<MedicalConditional> getPackageMedical(@Param("test_number")String test_number)throws Exception;
+
+    /**
+     * 获取用户套餐项下的组合项的体检项
+     * @param test_number 用户编号
+     * @return
+     * @throws Exception
+     */
+    List<MedicalConditional> getPackageCom(@Param("test_number")String test_number) throws Exception;
 
     /**
      * 获取用户组合项
@@ -84,4 +92,12 @@ public interface MedicalMapper {
      * 通过体检编号获取体检项目
      */
     List<UserTestInfo> selMedicaltestNumber(@Param("testNumber")String testNumber) throws Exception;
+
+    /**
+     * 根据用户编号查询该科室下的所有体检项
+     * @param testNumber 用户编号
+     * @param deskId 单位Id
+     * @return
+     */
+    List<MedicalConditional> getUserDeskMedicalByTestNumber(@Param("testNumber") String testNumber,@Param("deskId") String deskId) throws Exception;
 }

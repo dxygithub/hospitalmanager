@@ -25,9 +25,19 @@ public class MedicalServiceImpl implements MedicalService {
     }
 
     @Override
-    public List<MedicalConditional> getPackage(String test_number) {
+    public List<MedicalConditional> getPackageMedical(String test_number) {
         try {
-            return medicalMapper.getPackage(test_number);
+            return medicalMapper.getPackageMedical(test_number);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<MedicalConditional> getPackageCom(String test_number) {
+        try {
+            return medicalMapper.getPackageCom(test_number);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -38,6 +48,16 @@ public class MedicalServiceImpl implements MedicalService {
     public List<MedicalConditional> getCom(String test_number) {
         try {
             return medicalMapper.getCom(test_number);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<MedicalConditional> getUserDeskMedicalByTestNumber(String testNumber, String deskId) {
+        try {
+            return medicalMapper.getUserDeskMedicalByTestNumber(testNumber,deskId);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
