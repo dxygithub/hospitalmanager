@@ -85,6 +85,15 @@ public class UserRegisterInfoServiceImpl implements UserRegisterInfoService {
         }
         return result;
     }
+    @Override
+    public UserRegisterInfo selUserTestInfoById(String testNumber) {
+        try {
+            return userRegisterInfoMapper.selUserTestInfoById(testNumber);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     /**
      * 批量新增用户信息

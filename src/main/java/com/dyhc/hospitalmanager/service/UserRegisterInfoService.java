@@ -56,4 +56,8 @@ public interface UserRegisterInfoService {
      * @return
      */
     String selLastUserInfoId();
+    /**
+     * 通过体检项id查询用户信息
+     */
+    UserRegisterInfo selUserTestInfoById(String testNumber);
 }
