@@ -26,6 +26,27 @@ public class Medical {
     private String minValue;
     private String maxValue;
     private int isEnalbe;
+    //检查状态
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getTestStatus() {
+        return testStatus;
+    }
+
+    public void setTestStatus(int testStatus) {
+        this.testStatus = testStatus;
+    }
+
+    private int testStatus;
+
 
     @Id
     @Column(name = "medical_id")
