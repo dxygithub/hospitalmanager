@@ -1,8 +1,6 @@
 package com.dyhc.hospitalmanager.dao;
 
 import com.dyhc.hospitalmanager.pojo.Archives;
-import com.dyhc.hospitalmanager.pojo.CombinationMedical;
-import com.dyhc.hospitalmanager.pojo.PackageMedical;
 import com.dyhc.hospitalmanager.pojo.UserRegisterInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -47,4 +45,12 @@ public interface ArchivesMapper {
      * @return
      */
     List<Archives>  getArchivesList()throws Exception;
+
+    /**
+     * 根据用户编号，查询该用户的检查记录
+     * @param testNumber
+     * @return
+     * @throws Exception
+     */
+    Integer getUserCheckCount(@Param("testNumber") String testNumber) throws Exception;
 }

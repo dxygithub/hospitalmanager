@@ -7,7 +7,7 @@
     <!-- 根据单位编号查询所属的所有分组 -->
     <select id="getUnitsGroupList" resultType="com.dyhc.hospitalmanager.pojo.UnitsGroup">
         select * from `units_group`
-        where units_id  = #{unitsId}
+        where units_id= #{unitsId}
     </select>
 
     <!-- 新增单位分组信息 -->
@@ -70,4 +70,14 @@
         set `isdelete` = 0
         where `units_group_id` = #{unitsGroupId};
     </update>
+
+    <!--根据单位分组编号获取单位分组信息-->
+    <select id="getUnitsGroup" resultType="com.dyhc.hospitalmanager.pojo.UnitsGroup">
+        select * from units_group where units_group_id=#{unitsGroupId}
+    </select>
+
+    <!--获取最指定单位下的最后一个分组编号-->
+    <select id="getNewUbitsGroupId" resultType="string">
+        SELECT units_group_id FROM units_group WHERE units_id=#{unitId} ORDER BY units_group_id DESC LIMIT 1
+    </select>
 </mapper>

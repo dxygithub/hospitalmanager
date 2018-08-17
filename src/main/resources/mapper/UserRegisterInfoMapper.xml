@@ -29,7 +29,7 @@
         </if>
     </select>
 
-    <!--根据用户编号查看存档信息 存在这个用户 就把用户信息显示出来,并且检查次数加1==>updArchivesCheckCount()方法-->
+    <!--根据用户编号查看登记信息-->
     <select id="findUserRegisterInfoByTestNumber" resultType="com.dyhc.hospitalmanager.pojo.UserRegisterInfo" >
         SELECT * FROM `user_register_info` WHERE `test_number` = #{testNumber};
     </select>

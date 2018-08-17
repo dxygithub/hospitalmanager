@@ -25,7 +25,7 @@
 		</div>
 		<div class="layui-container layui-row" style="margin-top: 1%;">
 			<div class="layui-col-md9">
-				欢迎您，尊敬的科室医生：<label class="username">$${loginRoleInfo}</label>
+				欢迎您，尊敬的科室医生：<label class="username"></label>
 			</div>
 			<div class="layui-col-md3">
 				<label id="nowdate"></label>
@@ -58,51 +58,50 @@
 						<div class="layui-col-md10">
 							<h3 class="layui-inline">请输入人员编号:</h3>
 							<div class="layui-inline" style="width: 300px;">
-								<input type="text" name="username" required lay-verify="required" placeholder="请输入人员编号" autocomplete="off" class="layui-input">
+								<input type="text" name="testNumber" required lay-verify="required" placeholder="请输入人员编号" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-col-md2">
-							<button class="layui-btn layui-bg-green" id="LAY_delallmsg">快速搜索</button>
+							<button type="button" class="layui-btn layui-bg-green" id="LAY_delallmsg">快速搜索</button>
 						</div>
 					</div>
 					<div class="layui-row" style="margin-top:2%; margin-left: 3%;">
 						<div class="layui-col-md3" style="height:40px; line-height: 40px;">
 							<label>体检次数：</label>
-							<label id="checkcount">2</label>
+							<label id="checkcount"></label>
 						</div>
 						<div class="layui-col-md3" style="height:40px; line-height: 40px;">
 							<label>姓名：</label>
-							<label class="username">张三</label>
+							<label class="username"></label>
 						</div>
 						<div class="layui-col-md3" style="height:40px; line-height: 40px;">
 							<label>性别：</label>
-							<label class="sex">女</label>
+							<label class="sex"></label>
 						</div>
 						<div class="layui-col-md3" style="height:40px; line-height: 40px;">
 							<label>年龄：</label>
-							<label class="age">女</label>
+							<label class="age"></label>
 						</div>
 					</div>
-
 				</div>
 				<div class="layui-row" style="margin-left: 3%;">
 					<div class="layui-col-md3" style="height:40px; line-height: 40px;">
 						<label>体检类别：</label>
-						<label id="checkcount">2</label>
+						<label class="status"></label>
 					</div>
 					<div class="layui-col-md4" style="height:40px; line-height: 40px;">
 						<label>人员类别：</label>
-						<label class="username">张三</label>
+						<label class="personType"></label>
 					</div>
 					<div class="layui-col-md4" style="height:40px; line-height: 40px;">
 						<label>单位名称：</label>
-						<label class="sex">女</label>
+						<label class="unitsName"></label>
 					</div>
-
 				</div>
 
 				<div style="margin-top:2% ;">
-					<div class="layui-collapse" lay-accordion="">
+					<!-- 个人单个体检项 -->
+					<div id="medical" class="layui-collapse" lay-accordion="">
 						<div class="layui-colla-item">
 							<h2 class="layui-colla-title">肝脏功能</h2>
 							<div class="layui-colla-content">
@@ -152,6 +151,10 @@
 							</div>
 						</div>
 					</div>
+					<!-- 个人组合项 -->
+					<div id="com" class="layui-collapse"></div>
+					<!-- 个人套餐项 -->
+					<div id="pack" class="layui-collapse"></div>
 				</div>
 				<div>
 					<div style=" width: 915px;">
