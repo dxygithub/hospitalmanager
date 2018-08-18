@@ -1,8 +1,6 @@
 package com.dyhc.hospitalmanager.dao;
 
 import com.dyhc.hospitalmanager.pojo.Medical;
-import com.dyhc.hospitalmanager.pojo.PackageMedical;
-import com.dyhc.hospitalmanager.pojo.UserTestInfo;
 import com.dyhc.hospitalmanager.pojo.conditional.MedicalConditional;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -92,7 +90,7 @@ public interface MedicalMapper {
     /**
      * 通过体检编号获取体检项目
      */
-    List<UserTestInfo> selMedicaltestNumber(@Param("testNumber")String testNumber) throws Exception;
+    List<Medical> selMedicaltestNumber(@Param("testNumber")String testNumber) throws Exception;
 
     /**
      * 根据用户编号查询该科室下的所有体检项
