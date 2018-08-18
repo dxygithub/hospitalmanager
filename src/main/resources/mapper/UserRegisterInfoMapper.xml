@@ -71,4 +71,7 @@
                     )
                 </foreach>
     </insert>
+    <select id="selUserTestInfoById" resultType="com.dyhc.hospitalmanager.pojo.UserRegisterInfo">
+         SELECT * FROM `user_register_info` WHERE `test_number` =#{testNumber};
+    </select>
 </mapper>
