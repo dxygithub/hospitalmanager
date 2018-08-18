@@ -33,4 +33,25 @@ public class RoleInfoServiceImpl implements RoleInfoService {
             return null;
         }
     }
+
+    /**
+     * 管理员登录
+     * @param userName
+     * @param pwd
+     * @return
+     */
+    @Override
+    public RoleInfo loginAdmin(String userName, String pwd) {
+        RoleInfo roleInfo= null;
+        try {
+            roleInfo = roleInfoMapper.loginAdmin(userName,pwd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (roleInfo!=null){
+            return roleInfo;
+        }else {
+            return null;
+        }
+    }
 }

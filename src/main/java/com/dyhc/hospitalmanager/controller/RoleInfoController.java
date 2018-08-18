@@ -46,4 +46,23 @@ public class RoleInfoController {
         RoleInfo roleInfo = (RoleInfo)session.getAttribute(loing);
         return roleInfo;
     }
+
+    /**
+     * 管理员登录
+     * @param roleInfo
+     * @param session
+     * @return
+     */
+    @RequestMapping(value = "/loginAdmin.do")
+    @ResponseBody
+    public Object loginAdmin(RoleInfo roleInfo, HttpSession session) {
+        RoleInfo ro = roleInfoService.loginAdmin(roleInfo.getUserName(), roleInfo.getPassword());
+        if (ro != null) {
+            session.setAttribute(Commons.Guanliyuan.toString(), ro);
+            return JSON.toJSONString("登录成功");
+        } else {
+            return JSON.toJSONString("您的用户名或密码错误！");
+        }
+    }
+
 }

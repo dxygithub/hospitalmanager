@@ -12,4 +12,13 @@ public interface RoleInfoService {
      * @return
      */
     RoleInfo login(@Param("userName") String userName, @Param("pwd") String pwd);
+
+    /**
+     * 管理员登录
+     * @param userName
+     * @param pwd
+     * @return
+     * @throws Exception
+     */
+    RoleInfo loginAdmin(@Param("userName") String userName, @Param("pwd") String pwd);
 }
