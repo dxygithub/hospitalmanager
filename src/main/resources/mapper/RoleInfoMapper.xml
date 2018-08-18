@@ -54,4 +54,11 @@
         SELECT * FROM `role_info`
         WHERE `user_name` = #{userName} and `password` = #{pwd}
     </select>
+
+    <!-- 管理员登录 -->
+    <select id="loginAdmin" resultType="com.dyhc.hospitalmanager.pojo.RoleInfo">
+        SELECT * FROM `role_info`
+        WHERE `user_name` = #{userName} and `password` = #{pwd} and `role_type_id` = 1
+    </select>
+
 </mapper>
